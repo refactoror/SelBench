@@ -1,11 +1,11 @@
 /**
- * SelBench 0.0
+ * SelBench 1.0
  *
- * Utilities for testing and debugging selenium tests and extensions
+ * Utilities for testing, validating, and benchmarking Selenium IDE tests and extensions
  *
  * Add this file to Selenium: Options -> Options... "Selenium Core extensions"
  *   (not "Selenium IDE extensions", because we are accessing the Selenium object)
- * 
+ *
  * Features
  *  - Commands: emit/assertEmitted/resetEmitted, expectError, alert, timer/timerElapsed
  *  - The emit commands provide a way to validate sequencing and accumulated state.
@@ -16,14 +16,14 @@
  *
  * Wishlist:
  *  - Timer formatting options
- *   
+ *
  */
 
 function $w() { return selenium.browserbot.getCurrentWindow(); }
 function $d() { return selenium.browserbot.getDocument(); }
 
 // selbench name-space
-(function(_){
+(function($$){
 
   function evalWithVars(expr) {
     return eval("with (storedVars) {" + expr + "}");
@@ -38,7 +38,7 @@ function $d() { return selenium.browserbot.getDocument(); }
     Selenium.prototype.reset = function() {
       orig_reset.call(this);
       // called before each: execute a single command / run a testcase / run each testcase in a testsuite
-      _.LOG.debug("In SelBench tail intercept :: selenium.reset()");
+      $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
 
       try {
         compileSelbenchCommands();
@@ -83,8 +83,8 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
-    _.pushFn(editor.selDebugger.runner.IDETestLoop.prototype, "resume", _.handleAsExpectError);
-    _.expectedError = eval(target);
+    $$.expectedError = eval(target);
+    $$.fn.interceptOnce(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
   // ================================================================================
@@ -96,7 +96,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   };
   Selenium.prototype.doAssertEmitted = function(target, value)
   {
-    _.LOG.info("emitted: " + storedVars.emitted);
+    $$.LOG.info("emitted: " + storedVars.emitted);
     var expecting = eval(target);
     if (expecting != storedVars.emitted) {
       var errmsg = " expected: " + expecting + "\nbut found: " + storedVars.emitted;
@@ -112,16 +112,30 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ================================================================================
   // utility commands
 
+  // log the evaluated expression
+  Selenium.prototype.doLog = function(expr, level) {
+    if (!level)
+      level = "info";
+    if (!$$.LOG[level])
+      throw new Error("'" + level + "' is not a valid logging level");
+    $$.LOG[level](evalWithVars(expr));
+  };
+
   // display alert message with the evaluated expression
   Selenium.prototype.doAlert = function(expr) {
-      alert(evalWithVars(expr));
+    alert(evalWithVars(expr));
+  };
+
+  // remove selenium variable
+  Selenium.prototype.doDeleteVar = function(name) {
+    delete storedVars[name];
   };
 
 
   // ========= error handling =========
 
   function notifyFatal(msg) {
-    _.LOG.error("SelBench error " + msg);
+    $$.LOG.error("SelBench error " + msg);
     throw new Error(msg);
   }
 
@@ -138,7 +152,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   var timers = {};
 
-  Selenium.prototype.doTimer = function(name, description) {
+  Selenium.prototype.doStartTimer = function(name, description) {
     timers[name] = new Timer(description);
   };
 
@@ -149,7 +163,7 @@ function $d() { return selenium.browserbot.getDocument(); }
       eval(script);
     }
     else
-      _.LOG.info(timers[name].elapsed());
+      $$.LOG.info(timers[name].elapsed());
   };
 
   function Timer(desc, logLevel) {
@@ -157,7 +171,7 @@ function $d() { return selenium.browserbot.getDocument(); }
     this.elapsed = function() {
       var msElapsed = +new Date() - msStart;
       var msg = formatDuration(msElapsed) + " elapsed: " + (desc || "");
-      if (logLevel) _.LOG[logLevel](msg);
+      if (logLevel) $$.LOG[logLevel](msg);
       return msg;
     };
   }

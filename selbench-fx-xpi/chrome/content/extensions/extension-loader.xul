@@ -8,7 +8,7 @@
     <html:script type="application/javascript">
         var ide_api = new API();
         ide_api.addPlugin("selbench@chris.noe");
-        ide_api.addPluginProvidedUserExtension("chrome://selbenchSeleExten/content/extensions/sb.js");
+        ide_api.addPluginProvidedUserExtension("chrome://selbenchSeleExten/content/extensions/name-space.js");
         ide_api.addPluginProvidedUserExtension("chrome://selbenchSeleExten/content/extensions/logger.js");
         ide_api.addPluginProvidedUserExtension("chrome://selbenchSeleExten/content/extensions/selenium-executionloop-handleAsExpectError.js");
         ide_api.addPluginProvidedUserExtension("chrome://selbenchSeleExten/content/extensions/selbench.js");

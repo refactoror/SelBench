@@ -1,44 +1,50 @@
-/* This function replaces native Selenium command handling a command following expectError.
- * This alters command completion such that:
- *   If the command throws the given error message, then the script continues.
- *   if it succeeds or throws a different error, then the script stops with an error.
- */
 // selbench name-space
-(function(_){
-  _.expectedError = null;
+(function($$){
 
-  _.handleAsExpectError = function()
+  /* This function replaces native Selenium command handling a command following expectError.
+   * This alters command completion such that:
+   *   If the command throws the given error message, then the script continues.
+   *   if it succeeds or throws a different error, then the script stops with an error.
+   */
+  $$.expectedError = null;
+  $$.handleAsExpectError = function()
   {
-    _.popFn(); // un-intercept TestLoop.resume
+// $$.LOG.warn("cmd: " + this.currentCommand.command);
     try {
       selenium.browserbot.runScheduledPollers();
       this._executeCurrentCommand();
-      // detect if the command succeeds while an error is expected
-      if (_.expectedError != null) {
-        var msg = "Command succeeded while expecting error: " + _.expectedError;
-        _.expectedError = null;
-        throw new Error(msg);
+      // the command has not thrown an error
+      if ($$.expectedError == null)
+        this.continueTestWhenConditionIsTrue();
+      else {
+        // command succeeded, but an error was expected
+        $$.LOG.error("Expected the error: " + $$.expectedError);
+        $$.LOG.error("But command succeeded");
+        $$.expectedError = null;
+        this._handleCommandError(new Error("Error due to command success"));
+        //throw new Error(msg);
+        this.testComplete();
       }
-      this.continueTestWhenConditionIsTrue();
     } catch (e) {
       var isHandled = false;
-      if (_.expectedError == null)
+      if ($$.expectedError == null)
         isHandled = this._handleCommandError(e);
       else {
-        // verify that the expected kind of error has occurred
         try {
           if (isErrorMatch(e)) {
-            _.LOG.debug("Expected error confirmed: " + e.message);
+            // was an expected error
+            $$.LOG.debug("Expected error confirmed: " + e.message);
             isHandled = true;
           }
           else {
-            _.LOG.error("Expected error: " + _.expectedError);
-            _.LOG.error("Instead caught: " + e.message);
+            // was an unexpected error
+            $$.LOG.error("Expected the error: " + $$.expectedError);
+            $$.LOG.error(e.message);
             isHandled = this.commandError(msg);
           }
         }
         finally {
-          _.expectedError = null;
+          $$.expectedError = null;
         }
       }
       if (!isHandled) {
@@ -47,13 +53,15 @@
            this.continueTest();
       }
     }
-    //- match for error message
+
+    //- error message matcher
     function isErrorMatch(e) {
-      var msg = e.message;
-      if (_.expectedError instanceof RegExp) {
-        return (msg.match(_.expectedError));
+      var errMsg = e.message;
+      if ($$.expectedError instanceof RegExp) {
+        return (errMsg.match($$.expectedError));
       }
-      return (msg.indexOf(_.expectedError) != -1);
+      return (errMsg.indexOf($$.expectedError) != -1);
     }
   };
+
 }(selbench));

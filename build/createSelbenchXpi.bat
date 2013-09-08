@@ -1,12 +1,15 @@
 SETLOCAL
 
 :: Pre-requisites:
-::   Hand-edit selbench-fx-xpi/install.rdf: <em:version>x.y.z
+::   Hand-edit install.rdf: <em:version>x.y.z
+::             about.xul: text box
+::             selbench.js: header comment
 :: Assumptions:
 ::   cygwin grep
 ::   cygwin zip
 
-set STAGING=%~dp0
+set BUILD_DIR=%~dp0
+set ROOT=%BUILD_DIR%..
 
 :: parse SelBench version # from its install.rdf
 call :S_GET_ADDON_VER ..\selbench-fx-xpi
@@ -17,8 +20,8 @@ echo SelBench: %SU_VER%
 
 :: create SelBench xpi
 pushd ..\selbench-fx-xpi
-del "%STAGING%selbench-%SU_VER%-fx.xpi"
-zip -r "%STAGING%selbench-%SU_VER%-fx.xpi" * -x@"%STAGING%xpi-excludes.lst"
+del "%ROOT%\selbench-%SU_VER%-fx.xpi"
+zip -r "%ROOT:\=/%/../selbench-%SU_VER%-fx.xpi" * -x@"%BUILD_DIR%xpi-excludes.lst"
 popd
 
 ENDLOCAL

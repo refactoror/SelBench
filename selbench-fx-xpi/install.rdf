@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>selbench@chris.noe</em:id>
+    <em:name>Selenium IDE - SelBench</em:name>
+    <em:version>1.0</em:version>
+    <em:creator>Chris Noe</em:creator>
+    <em:description>A script and extention testing extension for Selenium-IDE</em:description>
+    <em:type>2</em:type> <!--Type extension-->
+    <em:homepageURL>http://refactoror.net/</em:homepageURL>
+    <em:iconURL>chrome://selbenchSeleExten/skin/icon.png</em:iconURL>
+    <em:aboutURL>chrome://selbenchSeleExten/content/about.xul</em:aboutURL>	
+
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>24.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    
+    <em:requires>   
+     <Description>
+         <em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id> <!-- Selenium -->
+         <em:minVersion>1.0.5</em:minVersion>
+         <em:maxVersion>2.*</em:maxVersion>
+     </Description>  
+    </em:requires>
+  </Description>
+</RDF>

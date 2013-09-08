@@ -1,0 +1,5 @@
+content selbenchSeleExten             chrome/content/
+skin    selbenchSeleExten classic/1.0 chrome/skin/
+
+# extension code
+overlay chrome://selenium-ide/content/selenium-ide-overlay.xul chrome://selbenchSeleExten/content/extensions/extension-loader.xul

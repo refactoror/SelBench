@@ -143,7 +143,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   var timers = {};
 
-  Selenium.prototype.doTimer = function(name, description) {
+  Selenium.prototype.doStartTimer = function(name, description) {
     timers[name] = new Timer(description);
   };
 

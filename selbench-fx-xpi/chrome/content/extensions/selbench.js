@@ -1,5 +1,5 @@
 /**
- * SelBench 0.0
+ * SelBench 1.0
  *
  * Utilities for testing and debugging selenium tests and extensions
  *

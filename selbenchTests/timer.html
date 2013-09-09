@@ -13,18 +13,37 @@
 </thead><tbody>
 <tr>
 	<td>startTimer</td>
-	<td>stuff</td>
+	<td>outer</td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>250</td>
+	<td>100</td>
 	<td></td>
 </tr>
-<!---- s/b ~0.250 sec, plus a small overhead-->
+<tr>
+	<td>startTimer</td>
+	<td>inner</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
 <tr>
 	<td>timerElapsed</td>
-	<td>stuff</td>
+	<td>inner</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>timerElapsed</td>
+	<td>outer</td>
 	<td></td>
 </tr>
 </tbody></table>

@@ -10,6 +10,7 @@
   _.handleAsExpectError = function()
   {
     _.popFn(); // un-intercept TestLoop.resume
+// _.LOG.warn("cmd: " + this.currentCommand.command);
     try {
       selenium.browserbot.runScheduledPollers();
       this._executeCurrentCommand();

@@ -4,42 +4,42 @@
  *   if it succeeds or throws a different error, then the script stops with an error.
  */
 // selbench name-space
-(function(_){
-  _.expectedError = null;
+(function($$){
+  $$.expectedError = null;
 
-  _.handleAsExpectError = function()
+  $$.handleAsExpectError = function()
   {
-    _.popFn(); // un-intercept TestLoop.resume
-// _.LOG.warn("cmd: " + this.currentCommand.command);
+    $$.popFn(); // un-intercept TestLoop.resume
+// $$.LOG.warn("cmd: " + this.currentCommand.command);
     try {
       selenium.browserbot.runScheduledPollers();
       this._executeCurrentCommand();
       // detect if the command succeeds while an error is expected
-      if (_.expectedError != null) {
-        var msg = "Command succeeded while expecting error: " + _.expectedError;
-        _.expectedError = null;
+      if ($$.expectedError != null) {
+        var msg = "Command succeeded while expecting error: " + $$.expectedError;
+        $$.expectedError = null;
         throw new Error(msg);
       }
       this.continueTestWhenConditionIsTrue();
     } catch (e) {
       var isHandled = false;
-      if (_.expectedError == null)
+      if ($$.expectedError == null)
         isHandled = this._handleCommandError(e);
       else {
         // verify that the expected kind of error has occurred
         try {
           if (isErrorMatch(e)) {
-            _.LOG.debug("Expected error confirmed: " + e.message);
+            $$.LOG.debug("Expected error confirmed: " + e.message);
             isHandled = true;
           }
           else {
-            _.LOG.error("Expected error: " + _.expectedError);
-            _.LOG.error("Instead caught: " + e.message);
+            $$.LOG.error("Expected error: " + $$.expectedError);
+            $$.LOG.error("Instead caught: " + e.message);
             isHandled = this.commandError(msg);
           }
         }
         finally {
-          _.expectedError = null;
+          $$.expectedError = null;
         }
       }
       if (!isHandled) {
@@ -51,10 +51,10 @@
     //- match for error message
     function isErrorMatch(e) {
       var msg = e.message;
-      if (_.expectedError instanceof RegExp) {
-        return (msg.match(_.expectedError));
+      if ($$.expectedError instanceof RegExp) {
+        return (msg.match($$.expectedError));
       }
-      return (msg.indexOf(_.expectedError) != -1);
+      return (msg.indexOf($$.expectedError) != -1);
     }
   };
 }(selbench));

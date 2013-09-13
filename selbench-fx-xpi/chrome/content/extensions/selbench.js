@@ -23,7 +23,7 @@ function $w() { return selenium.browserbot.getCurrentWindow(); }
 function $d() { return selenium.browserbot.getDocument(); }
 
 // selbench name-space
-(function(_){
+(function($$){
 
   function evalWithVars(expr) {
     return eval("with (storedVars) {" + expr + "}");
@@ -38,7 +38,7 @@ function $d() { return selenium.browserbot.getDocument(); }
     Selenium.prototype.reset = function() {
       orig_reset.call(this);
       // called before each: execute a single command / run a testcase / run each testcase in a testsuite
-      _.LOG.debug("In SelBench tail intercept :: selenium.reset()");
+      $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
 
       try {
         compileSelbenchCommands();
@@ -83,8 +83,8 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
-    _.pushFn(editor.selDebugger.runner.IDETestLoop.prototype, "resume", _.handleAsExpectError);
-    _.expectedError = eval(target);
+    $$.pushFn(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
+    $$.expectedError = eval(target);
   };
 
   // ================================================================================
@@ -96,7 +96,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   };
   Selenium.prototype.doAssertEmitted = function(target, value)
   {
-    _.LOG.info("emitted: " + storedVars.emitted);
+    $$.LOG.info("emitted: " + storedVars.emitted);
     var expecting = eval(target);
     if (expecting != storedVars.emitted) {
       var errmsg = " expected: " + expecting + "\nbut found: " + storedVars.emitted;
@@ -114,7 +114,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // log the evaluated expression
   Selenium.prototype.doLog = function(expr) {
-    _.LOG.info(evalWithVars(expr));
+    $$.LOG.info(evalWithVars(expr));
   };
 
   // display alert message with the evaluated expression
@@ -126,7 +126,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ========= error handling =========
 
   function notifyFatal(msg) {
-    _.LOG.error("SelBench error " + msg);
+    $$.LOG.error("SelBench error " + msg);
     throw new Error(msg);
   }
 
@@ -154,7 +154,7 @@ function $d() { return selenium.browserbot.getDocument(); }
       eval(script);
     }
     else
-      _.LOG.info(timers[name].elapsed());
+      $$.LOG.info(timers[name].elapsed());
   };
 
   function Timer(desc, logLevel) {
@@ -162,7 +162,7 @@ function $d() { return selenium.browserbot.getDocument(); }
     this.elapsed = function() {
       var msElapsed = +new Date() - msStart;
       var msg = formatDuration(msElapsed) + " elapsed: " + (desc || "");
-      if (logLevel) _.LOG[logLevel](msg);
+      if (logLevel) $$.LOG[logLevel](msg);
       return msg;
     };
   }

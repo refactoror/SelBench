@@ -2,7 +2,7 @@
  */
 
 // selbench name-space
-(function(_){
+(function($$){
 
   function Logger()
   {
@@ -61,6 +61,6 @@
     };
   }
 
-  _.LOG = new Logger();
+  $$.LOG = new Logger();
 
 }(selbench));

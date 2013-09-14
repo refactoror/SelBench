@@ -1,15 +1,14 @@
-/* This function replaces native Selenium command handling a command following expectError.
- * This alters command completion such that:
- *   If the command throws the given error message, then the script continues.
- *   if it succeeds or throws a different error, then the script stops with an error.
- */
 // selbench name-space
 (function($$){
-  $$.expectedError = null;
 
+  /* This function replaces native Selenium command handling a command following expectError.
+   * This alters command completion such that:
+   *   If the command throws the given error message, then the script continues.
+   *   if it succeeds or throws a different error, then the script stops with an error.
+   */
+  $$.expectedError = null;
   $$.handleAsExpectError = function()
   {
-    $$.popFn(); // un-intercept TestLoop.resume
 // $$.LOG.warn("cmd: " + this.currentCommand.command);
     try {
       selenium.browserbot.runScheduledPollers();

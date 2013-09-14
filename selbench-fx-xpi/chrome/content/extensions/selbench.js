@@ -83,8 +83,8 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
-    $$.pushFn(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
     $$.expectedError = eval(target);
+    $$.interceptOnce(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
   // ================================================================================

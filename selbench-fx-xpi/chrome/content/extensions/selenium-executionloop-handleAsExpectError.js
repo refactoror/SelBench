@@ -13,13 +13,18 @@
     try {
       selenium.browserbot.runScheduledPollers();
       this._executeCurrentCommand();
-      // detect if the command succeeds while an error is expected
-      if ($$.expectedError != null) {
-        var msg = "Command succeeded while expecting error: " + $$.expectedError;
+      // the command has not thrown an error
+      if ($$.expectedError == null)
+        this.continueTestWhenConditionIsTrue();
+      else {
+        // detect if the command succeeds while an error is expected
+        $$.LOG.error("Expected the error: " + $$.expectedError);
+        $$.LOG.error("But command succeeded");
         $$.expectedError = null;
-        throw new Error(msg);
+        this._handleCommandError(new Error("Error due to command success"));
+        //throw new Error(msg);
+        this.testComplete();
       }
-      this.continueTestWhenConditionIsTrue();
     } catch (e) {
       var isHandled = false;
       if ($$.expectedError == null)
@@ -32,8 +37,8 @@
             isHandled = true;
           }
           else {
-            $$.LOG.error("Expected error: " + $$.expectedError);
-            $$.LOG.error("Instead caught: " + e.message);
+            $$.LOG.error("Expected the error: " + $$.expectedError);
+            $$.LOG.error(e.message);
             isHandled = this.commandError(msg);
           }
         }

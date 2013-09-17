@@ -6,8 +6,13 @@
   $$.fnStack = [];
 
   // replace the specified function, saving the original function on a stack
-  $$.interceptPush = function(targetObj, targetFnName, fn) {
-    var frame = { targetObj: targetObj, targetFnName: targetFnName, savedFn: targetObj[targetFnName] };
+  $$.interceptPush = function(targetObj, targetFnName, fn, frameAttrs) {
+    var frame = {
+       targetObj: targetObj
+      ,targetFnName: targetFnName
+      ,savedFn: targetObj[targetFnName]
+      ,attrs: frameAttrs
+    };
     $$.fnStack.push(frame);
     targetObj[targetFnName] = fn;
   };

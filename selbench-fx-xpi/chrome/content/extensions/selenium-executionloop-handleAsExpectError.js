@@ -17,7 +17,7 @@
       if ($$.expectedError == null)
         this.continueTestWhenConditionIsTrue();
       else {
-        // detect if the command succeeds while an error is expected
+        // command succeeded, but an error was expected
         $$.LOG.error("Expected the error: " + $$.expectedError);
         $$.LOG.error("But command succeeded");
         $$.expectedError = null;
@@ -30,13 +30,14 @@
       if ($$.expectedError == null)
         isHandled = this._handleCommandError(e);
       else {
-        // verify that the expected kind of error has occurred
         try {
           if (isErrorMatch(e)) {
+            // was an expected error
             $$.LOG.debug("Expected error confirmed: " + e.message);
             isHandled = true;
           }
           else {
+            // was an unexpected error
             $$.LOG.error("Expected the error: " + $$.expectedError);
             $$.LOG.error(e.message);
             isHandled = this.commandError(msg);
@@ -52,13 +53,15 @@
            this.continueTest();
       }
     }
-    //- match for error message
+
+    //- error message matcher
     function isErrorMatch(e) {
-      var msg = e.message;
+      var errMsg = e.message;
       if ($$.expectedError instanceof RegExp) {
-        return (msg.match($$.expectedError));
+        return (errMsg.match($$.expectedError));
       }
-      return (msg.indexOf($$.expectedError) != -1);
+      return (errMsg.indexOf($$.expectedError) != -1);
     }
   };
+
 }(selbench));

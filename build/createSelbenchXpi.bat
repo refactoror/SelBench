@@ -20,7 +20,8 @@ echo SelBench: %SU_VER%
 :: create SelBench xpi
 pushd ..\selbench-fx-xpi
 del "%STAGING%selbench-%SU_VER%-fx.xpi"
-zip -r "%STAGING%/../../historical-xpi/selbench-%SU_VER%-fx.xpi" * -x@"%STAGING%xpi-excludes.lst"
+mkdir "%STAGING%/../../_historical-xpi"
+zip -r "%STAGING%/../../_historical-xpi/selbench-%SU_VER%-fx.xpi" * -x@"%STAGING%xpi-excludes.lst"
 popd
 
 ENDLOCAL

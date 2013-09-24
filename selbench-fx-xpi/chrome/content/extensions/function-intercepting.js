@@ -6,7 +6,7 @@
   $$.fnStack = [];
 
   // replace the specified function, saving the original function on a stack
-  $$.interceptPush = function(targetObj, targetFnName, fn, frameAttrs) {
+  $$.interceptPush = function(targetObj, targetFnName, _fn, frameAttrs) {
     var frame = {
        targetObj: targetObj
       ,targetFnName: targetFnName
@@ -14,7 +14,7 @@
       ,attrs: frameAttrs
     };
     $$.fnStack.push(frame);
-    targetObj[targetFnName] = fn;
+    targetObj[targetFnName] = _fn;
   };
   // restore the most recent function replacement
   $$.interceptPop = function() {
@@ -23,10 +23,10 @@
   };
 
   // replace the specified function, but then restore the original function as soon as it is call
-  $$.interceptOnce = function(targetObj, targetFnName, fn) {
+  $$.interceptOnce = function(targetObj, targetFnName, _fn) {
     $$.interceptPush(targetObj, targetFnName, function(){
       $$.interceptPop(); // un-intercept
-      fn.call(this);
+      _fn.call(this);
     });
   };
 

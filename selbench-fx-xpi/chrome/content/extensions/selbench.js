@@ -1,7 +1,7 @@
 /**
  * SelBench 1.0
  *
- * Utilities for testing and debugging selenium tests and extensions
+ * Utilities for testing, validating, and benchmarking Selenium IDE tests and extensions
  *
  * Add this file to Selenium: Options -> Options... "Selenium Core extensions"
  *   (not "Selenium IDE extensions", because we are accessing the Selenium object)

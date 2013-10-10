@@ -3,29 +3,30 @@
 
   /* Function interception
   */
-  $$.fnStack = [];
+  $$.fn = {};
+  $$.fn.interceptStack = [];
 
   // replace the specified function, saving the original function on a stack
-  $$.interceptPush = function(targetObj, targetFnName, _fn, frameAttrs) {
+  $$.fn.interceptPush = function(targetObj, targetFnName, _fn, frameAttrs) {
     var frame = {
        targetObj: targetObj
       ,targetFnName: targetFnName
       ,savedFn: targetObj[targetFnName]
       ,attrs: frameAttrs
     };
-    $$.fnStack.push(frame);
+    $$.fn.interceptStack.push(frame);
     targetObj[targetFnName] = _fn;
   };
   // restore the most recent function replacement
-  $$.interceptPop = function() {
-    var frame = $$.fnStack.pop();
+  $$.fn.interceptPop = function() {
+    var frame = $$.fn.interceptStack.pop();
     frame.targetObj[frame.targetFnName] = frame.savedFn;
   };
 
   // replace the specified function, but then restore the original function as soon as it is call
-  $$.interceptOnce = function(targetObj, targetFnName, _fn) {
-    $$.interceptPush(targetObj, targetFnName, function(){
-      $$.interceptPop(); // un-intercept
+  $$.fn.interceptOnce = function(targetObj, targetFnName, _fn) {
+    $$.fn.interceptPush(targetObj, targetFnName, function(){
+      $$.fn.interceptPop(); // un-intercept
       _fn.call(this);
     });
   };

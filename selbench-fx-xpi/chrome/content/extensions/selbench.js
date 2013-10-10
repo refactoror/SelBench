@@ -84,7 +84,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
     $$.expectedError = eval(target);
-    $$.interceptOnce(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
+    $$.fn.interceptOnce(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
   // ================================================================================

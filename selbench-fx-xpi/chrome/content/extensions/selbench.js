@@ -113,13 +113,20 @@ function $d() { return selenium.browserbot.getDocument(); }
   // utility commands
 
   // log the evaluated expression
-  Selenium.prototype.doLog = function(expr) {
-    $$.LOG.info(evalWithVars(expr));
+  Selenium.prototype.doLog = function(expr, level) {
+    if (!level)
+      level = "info";
+    LOG[level](evalWithVars(expr));
   };
 
   // display alert message with the evaluated expression
   Selenium.prototype.doAlert = function(expr) {
       alert(evalWithVars(expr));
+  };
+
+  // display alert message with the evaluated expression
+  Selenium.prototype.doThrow = function(expr) {
+      throw new Error(evalWithVars(expr));
   };
 
 

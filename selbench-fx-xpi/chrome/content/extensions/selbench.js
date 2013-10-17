@@ -116,7 +116,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   Selenium.prototype.doLog = function(expr, level) {
     if (!level)
       level = "info";
-    LOG[level](evalWithVars(expr));
+    $$.LOG[level](evalWithVars(expr));
   };
 
   // display alert message with the evaluated expression

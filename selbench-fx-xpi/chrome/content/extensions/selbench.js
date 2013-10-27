@@ -121,12 +121,17 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // display alert message with the evaluated expression
   Selenium.prototype.doAlert = function(expr) {
-      alert(evalWithVars(expr));
+    alert(evalWithVars(expr));
   };
 
   // display alert message with the evaluated expression
   Selenium.prototype.doThrow = function(expr) {
-      throw new Error(evalWithVars(expr));
+    throw new Error(evalWithVars(expr));
+  };
+
+  // remove selenium variable
+  Selenium.prototype.doDeleteVar = function(name) {
+    delete storedVars[name];
   };
 
 

@@ -5,7 +5,7 @@
  *
  * Add this file to Selenium: Options -> Options... "Selenium Core extensions"
  *   (not "Selenium IDE extensions", because we are accessing the Selenium object)
- * 
+ *
  * Features
  *  - Commands: emit/assertEmitted/resetEmitted, expectError, alert, timer/timerElapsed
  *  - The emit commands provide a way to validate sequencing and accumulated state.
@@ -16,7 +16,7 @@
  *
  * Wishlist:
  *  - Timer formatting options
- *   
+ *
  */
 
 function $w() { return selenium.browserbot.getCurrentWindow(); }
@@ -116,6 +116,8 @@ function $d() { return selenium.browserbot.getDocument(); }
   Selenium.prototype.doLog = function(expr, level) {
     if (!level)
       level = "info";
+    if (!$$.LOG[level])
+      throw new Error("'" + level + "' is not a valid logging level");
     $$.LOG[level](evalWithVars(expr));
   };
 

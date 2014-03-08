@@ -3,7 +3,7 @@
  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>selbench@chris.noe</em:id>
-    <em:name>_Selenium IDE - SelBench</em:name>
+    <em:name>Selenium IDE - SelBench</em:name>
     <em:version>1.0</em:version>
     <em:creator>Chris Noe</em:creator>
     <em:description>A script and extension testing extension for Selenium-IDE</em:description>
@@ -12,20 +12,23 @@
     <em:iconURL>chrome://selbenchSeleExten/skin/icon.png</em:iconURL>
     <em:aboutURL>chrome://selbenchSeleExten/content/about.xul</em:aboutURL>	
 
+
     <em:targetApplication>
-      <Description>
-        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+      <Description> <!-- Firefox -->
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>17.0</em:minVersion>
-        <em:maxVersion>99.*</em:maxVersion>
+        <em:maxVersion>24.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-    
-    <em:requires>   
+
+  <!-- Selenium dependency
+    <em:requires>
      <Description>
-         <em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id> <!-- Selenium -->
+         <em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id>
          <em:minVersion>1.1</em:minVersion>
          <em:maxVersion>2.*</em:maxVersion>
-     </Description>  
+     </Description>
     </em:requires>
+  -->
   </Description>
 </RDF>

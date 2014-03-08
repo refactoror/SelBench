@@ -3,7 +3,7 @@
  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>selbench@chris.noe</em:id>
-    <em:name>Selenium IDE - SelBench</em:name>
+    <em:name>_Selenium IDE - SelBench</em:name>
     <em:version>1.0</em:version>
     <em:creator>Chris Noe</em:creator>
     <em:description>A script and extension testing extension for Selenium-IDE</em:description>

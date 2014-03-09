@@ -131,6 +131,14 @@ function $d() { return selenium.browserbot.getDocument(); }
     delete storedVars[name];
   };
 
+  // remove selenium variable
+  Selenium.prototype.doDeleteVars = function(namesSpec) {
+    var names = namesSpec.split(",");
+    for (var i = 0; i < names.length; i++) {
+      delete storedVars[names[i].trim()];
+    }
+  };
+
 
   // ========= error handling =========
 

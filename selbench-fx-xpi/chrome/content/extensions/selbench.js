@@ -88,22 +88,29 @@ function $d() { return selenium.browserbot.getDocument(); }
   };
 
   // ================================================================================
+
+  // appends the given string to current emitted state, (a ~ is inserted between each append)
   Selenium.prototype.doEmit = function(target)
   {
     if (storedVars.emitted)
       storedVars.emitted += "~";
     storedVars.emitted += evalWithVars(target);
   };
+  // verifies that the accumulated emit state matches the given string
+  // if an array is specified, then matches for a ~ between each element
   Selenium.prototype.doAssertEmitted = function(target, value)
   {
-    $$.LOG.info("emitted: " + storedVars.emitted);
-    var expecting = eval(target);
-    if (expecting != storedVars.emitted) {
-      var errmsg = " expected: " + expecting + "\nbut found: " + storedVars.emitted;
+    var expectedValue = eval(target);
+    if (expectedValue instanceof Array) {
+      expectedValue = expectedValue.join("~");
+    }
+    if (expectedValue != storedVars.emitted) {
+      var errmsg = " expected: " + expectedValue + "\nbut found: " + storedVars.emitted;
       alert(errmsg);
       throw new Error(errmsg);
     }
   };
+  // clears the accumulated emitted state
   Selenium.prototype.doResetEmitted = function()
   {
     storedVars.emitted = "";

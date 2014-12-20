@@ -10,6 +10,6 @@ Commands
 * The <code>expectError</code> command facilitate negative testing by handling command failure as success.
 * The <code>emit</code>, <code>assertEmitted</code>, <code>resetEmitted</code> commands provide a way to validate sequencing and accumulated state.
 * The <code>startTimer</code>, <code>timerElapsed</code> commands provide interval timing of scripts.
-* The <code>deleteVar</code> command is equivalent to <code>getEval|delete storedVars[name]</code>
+* The <code>deleteVar/deleteVars</code> commands are equivalent to <code>getEval|delete storedVars[name]</code>
 
 [Firefox Installer](https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/)

@@ -1,5 +1,5 @@
 /**
- * SelBench 1.0
+ * SelBench 1.1
  *
  * Utilities for testing, validating, and benchmarking Selenium IDE tests and extensions
  *
@@ -7,7 +7,7 @@
  *   (not "Selenium IDE extensions", because we are accessing the Selenium object)
  *
  * Features
- *  - Commands: emit/assertEmitted/resetEmitted, expectError, alert, timer/timerElapsed
+ *  - Commands: log/alert, expectError, emit/assertEmitted/resetEmitted, startTimer/timerElapsed, deleteVar/deleteVars
  *  - The emit commands provide a way to validate sequencing and accumulated state.
  *  - The expectError command facilitates negative testing by handling command failure as success.
  *  - The alert command is equivalent to getEval|alert()

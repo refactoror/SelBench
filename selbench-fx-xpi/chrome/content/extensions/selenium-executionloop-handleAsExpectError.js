@@ -1,62 +1,66 @@
 // selbench name-space
 (function($$){
-
-  /* This function replaces native Selenium command handling a command following expectError.
+  /* This function replaces native Selenium command-handling for the command following expectError.
+   * (See TestLoop.prototype.resume() in chrome/content/selenium-core/scripts/selenium-executionloop.js.)
    * This alters command completion such that:
    *   If the command throws the given error message, then the script continues.
    *   if it succeeds or throws a different error, then the script stops with an error.
    */
-  $$.expectedError = null;
+  $$.expectedError = null; // will have been set by the expectError command
+
   $$.handleAsExpectError = function()
   {
-// $$.LOG.warn("cmd: " + this.currentCommand.command);
     try {
       selenium.browserbot.runScheduledPollers();
       this._executeCurrentCommand();
-      // the command has not thrown an error
-      if ($$.expectedError == null)
-        this.continueTestWhenConditionIsTrue();
+      if (this.result.failed) {
+        if (isErrorMatch(this.result)) {
+          $$.LOG.info("The expected verify-failure is confirmed : " + this.result.failureMessage);
+          // overall test status is not affected
+          this.continueTest();
+        }
+        else {
+          // encountered a different verify-failure than expected, or no failure at all
+          $$.LOG.error("Expected error : " + $$.expectedError);
+          // continuing - but command is marked in red, and overall test status is failed
+          this.continueTestWhenConditionIsTrue();
+        }
+      }
       else {
-        // command succeeded, but an error was expected
-        $$.LOG.error("Expected the error: " + $$.expectedError);
-        $$.LOG.error("But command succeeded");
-        $$.expectedError = null;
-        this._handleCommandError(new Error("Error due to command success"));
-        //throw new Error(msg);
+        this._handleCommandError(new Error("Command succeeded, while expecting error : " + $$.expectedError));
+        // command is marked in red, and overall test status is failed
         this.testComplete();
       }
-    } catch (e) {
-      var isHandled = false;
-      if ($$.expectedError == null)
-        isHandled = this._handleCommandError(e);
-      else {
-        try {
-          if (isErrorMatch(e)) {
-            // was an expected error
-            $$.LOG.debug("Expected error confirmed: " + e.message);
-            isHandled = true;
-          }
-          else {
-            // was an unexpected error
-            $$.LOG.error("Expected the error: " + $$.expectedError);
-            $$.LOG.error(e.message);
-            isHandled = this.commandError(msg);
-          }
-        }
-        finally {
-          $$.expectedError = null;
-        }
+    }
+    catch (e) {
+      if (isErrorMatch(e)) {
+        $$.LOG.info("The expected error is confirmed : " + e.message);
+        // overall test status is not affected
+        this.continueTest();
       }
-      if (!isHandled) {
-           this.testComplete();
-      } else {
-           this.continueTest();
+      else {
+        // encountered a different error than expected
+        $$.LOG.error("Expected error : " + $$.expectedError);
+        $$.LOG.error("but encountered : " + e.message);
+        // normal Selenium behavior
+        if (!this._handleCommandError(e)) {
+          // command is marked in red, and overall test status is failed
+          this.testComplete();
+        }
+        else {
+          // error has been otherwise handled by TestLoop.prototype._handleCommandError()
+          // (not sure what the possibilities are, other than stopping and failing the script)
+          this.continueTest();
+        }
       }
     }
 
     //- error message matcher
     function isErrorMatch(e) {
-      var errMsg = e.message;
+      var errMsg = (e.constructor.name == "AssertResult")
+        ? e.failureMessage   // verify failure
+        : errMsg = e.message // thrown Error
+      ;
       if ($$.expectedError instanceof RegExp) {
         return (errMsg.match($$.expectedError));
       }

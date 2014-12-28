@@ -22,7 +22,44 @@
 	<td>String.flubber()</td>
 	<td></td>
 </tr>
-<!--** supposed to fail-->
+<!---- failed-verify as expected-->
+<tr>
+	<td>expectError</td>
+	<td>/Actual value '1' did not match '2'/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>1</td>
+	<td>2</td>
+</tr>
+<!---- different failed-verify than expected-->
+<tr>
+	<td>expectError</td>
+	<td>/Actual value '0 ' did not match '1'/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>1</td>
+	<td>2</td>
+</tr>
+<!---- successful-verify not expected-->
+<tr>
+	<td>expectError</td>
+	<td>/Actual value '1' did not match '2'/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>1</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>eof</td>
+	<td></td>
+</tr>
 <!---- different error than expected-->
 <tr>
 	<td>expectError</td>
@@ -34,7 +71,6 @@
 	<td>String.pppphreddddd()</td>
 	<td></td>
 </tr>
-<!--** supposed to fail-->
 <!---- succeed rather than fail-->
 <tr>
 	<td>expectError</td>
@@ -42,8 +78,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>getEval</td>
-	<td>&quot;&quot;.trim()</td>
+	<td>label</td>
+	<td>eof</td>
 	<td></td>
 </tr>
 </tbody></table>

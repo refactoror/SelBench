@@ -19,7 +19,11 @@
  *
  */
 
-function $w() { return selenium.browserbot.getCurrentWindow(); }
+// Selenium window (eg: $sw()._Selenium_IDE_Recorder)
+function $sw() { return selenium.browserbot.getCurrentWindow(); }
+// browser window (eg: $w().history .navigator .location .menubar .toolbar .statusbar .sidebar)
+function $w() { return $sw().window; }
+// document (eg: $d().title)
 function $d() { return selenium.browserbot.getDocument(); }
 
 // selbench name-space

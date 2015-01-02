@@ -1,0 +1,68 @@
+=SelBench 1.0=
+
+Installer: https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/
+
+=Description=
+
+Provides utilities for testing, validating, and benchmarking Selenium IDE scripts. This is especially useful for instrumenting scripts that are used to test Selenium IDE extensions.
+
+=Features=
+
+* Convenience functions: <tt>$w()</tt> and <tt>$d()</tt>
+* Commands: <tt>alert</tt>, <tt>log</tt>,
+    <tt>deleteVar</tt>, <tt>deleteVars</tt>,
+    <tt>expectError</tt>, <tt>emit</tt>, <tt>assertEmitted</tt>, <tt>resetEmitted</tt>,
+    <tt>startTimer</tt>, <tt>timerElapsed</tt>
+
+=Examples of Use=
+
+Object access:
+
+ assertEval|$d().title === $w().document.title
+
+Simple logging and prompting:
+
+ alert|"hello world"
+ log|"hello world"
+
+Undefining Selenium variables:
+
+ deleteVar|n
+
+Verifying that a command will fail as expected:
+
+ expectError|"n is not define"
+ getEval|n
+
+Tracking state and sequence,("$" + "{n}~" prevents variable substitution):
+
+ resetEmitted
+ deleteVar|n
+ emit|"${n}"
+ store|0|n
+ emit|n++
+ emit|"${n}"
+ assertEmitted|"$" + "{n}~" + 0 + "~" + 1
+
+Timing script execution:
+
+ startTimer
+ timerElapsed
+
+<tt>$w()</tt> and <tt>$d()</tt> can be used in expressions:
+
+ assertEval|$d().title === $w().document.title|true
+
+=Limitations=
+
+<tt>expectError</tt> works on the next command to be executed.
+Therefore it does not make much sense when used on:
+* commands that cannot fail, (e.g., the SelBlocks <tt>exitTest</tt> command)
+* commands that themselves manage other commands, (e.g., the SelBlocks <tt>try</tt> command)
+* on itself
+
+=Revision History=
+
+* 2014-03-07: v1.0
+
+All versions: https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/versions/

@@ -12,17 +12,14 @@
  *  - The expectError command facilitates negative testing by handling command failure as success.
  *  - The alert command is equivalent to getEval|alert()
  *  - The timer commands provide interval timing of scripts.
- *  - $w() and $d() are shorthand references to the window and document objects.
+ *  - $w() and $d() are shorthand references to the Selenium IDE window, the browser window, and browser document.
  *
  * Wishlist:
  *  - Timer formatting options
- *
  */
 
-// Selenium window (eg: $sw()._Selenium_IDE_Recorder)
-function $sw() { return selenium.browserbot.getCurrentWindow(); }
 // browser window (eg: $w().history .navigator .location .menubar .toolbar .statusbar .sidebar)
-function $w() { return $sw().window; }
+function $w() { return selenium.browserbot.getCurrentWindow(); }
 // document (eg: $d().title)
 function $d() { return selenium.browserbot.getDocument(); }
 

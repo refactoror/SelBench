@@ -53,6 +53,16 @@ Timing script execution:
 
  assertEval|$d().title === $w().document.title|true
 
+=Selenium Server=
+
+SelBench can also be used with Selenium Server. To make it available to tests being run in the server, use command line option:
+
+  -userExtensions user-extensions.js
+
+The latest version of user-extensions.js can be downloaded here: https://github.com/refactoror/SelBench
+
+For more information, see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
+
 =Limitations=
 
 <tt>expectError</tt> works on the next command to be executed.
@@ -63,6 +73,10 @@ Therefore it does not make much sense when used on:
 
 =Revision History=
 
+* 2015-??-??: v1.0.1
+** SelBench now works with Selenium Server. A big thanks to Matthew Kastor for this contribution.
+** Fixed Issue #4 expectError fails on unexpected error
+** Fixed Issue #5 expectError not clearing error status
 * 2014-03-07: v1.0
 
 All versions: https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/versions/

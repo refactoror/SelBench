@@ -40,6 +40,9 @@ function $d() { return selenium.browserbot.getDocument(); }
       orig_reset.call(this);
       // called before each: execute a single command / run a testcase / run each testcase in a testsuite
       $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
+      $$.seleniumTestLoop = (globalContext.onServer)
+        ? HtmlRunnerTestLoop                     // Selenium Server
+        : editor.selDebugger.runner.IDETestLoop; // Selenium IDE
 
       try {
         compileSelbenchCommands();
@@ -85,8 +88,9 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
     $$.expectedError = eval(target);
-    $$.fn.interceptOnce(editor.selDebugger.runner.IDETestLoop.prototype, "resume", $$.handleAsExpectError);
+    $$.fn.interceptOnce($$.seleniumTestLoop.prototype, "resume", $$.handleAsExpectError);
   };
+
 
   // ================================================================================
 

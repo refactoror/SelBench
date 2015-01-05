@@ -19,13 +19,20 @@ echo SelBench: %SU_VER%
 
 
 :: create SelBench xpi
-pushd ..\selbench-fx-xpi
+pushd %BUILD_DIR%\..\selbench-fx-xpi
 del "%ROOT%\selbench-%SU_VER%-fx.xpi"
 zip -r "%ROOT:\=/%/../selbench-%SU_VER%-fx.xpi" * -x@"%BUILD_DIR%xpi-excludes.lst"
 popd
 
-ENDLOCAL
+:: assemble user-extensions.js file
+CALL createSelbenchUserExtensions.cmd
 
+:: create minified version of user-extensions.js
+"%JAVA_HOME%\bin\java" -jar "yuicompressor-2.4.8.jar" ^
+   ../user-extensions.js ^
+-o ../user-extensions-min.js
+
+ENDLOCAL
 
 GOTO :done
 
@@ -44,4 +51,4 @@ ENDLOCAL
 ENDLOCAL
 
 :done
-pause
+::pause

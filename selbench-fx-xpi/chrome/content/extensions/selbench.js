@@ -26,21 +26,16 @@ function $d() { return selenium.browserbot.getDocument(); }
 // selbench name-space
 (function($$){
 
-  function evalWithVars(expr) {
-    return eval("with (storedVars) {" + expr + "}");
-  }
-
   // ================================================================================
   // tail intercept Selenium.reset()
 
   (function () {
    // called when Selenium IDE opens / on Dev Tools [Reload] button / upon first command execution
-    var orig_reset = Selenium.prototype.reset;
-    Selenium.prototype.reset = function() {
-      orig_reset.call(this);
+    $$.fn.interceptAfter(Selenium.prototype, "reset", function()
+    {
       // called before each: execute a single command / run a testcase / run each testcase in a testsuite
       $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
-      $$.seleniumTestLoop = (globalContext.onServer)
+      $$.seleniumTestLoop = ($$.seleniumEnv == "server")
         ? HtmlRunnerTestLoop                     // Selenium Server
         : editor.selDebugger.runner.IDETestLoop; // Selenium IDE
 
@@ -51,7 +46,7 @@ function $d() { return selenium.browserbot.getDocument(); }
         throw new Error("In " + err.fileName + " @" + err.lineNumber + ": " + err);
       }
       storedVars.emitted = "";
-    };
+    });
   })();
 
   function compileSelbenchCommands()
@@ -77,13 +72,9 @@ function $d() { return selenium.browserbot.getDocument(); }
     }
   }
 
-  // ================================================================================
-  // emit execution tracing
-
   function evalWithVars(expr) {
     return eval("with (storedVars) {" + expr + "}");
   }
-
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
@@ -91,6 +82,8 @@ function $d() { return selenium.browserbot.getDocument(); }
     $$.fn.interceptOnce($$.seleniumTestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
+  // ================================================================================
+  // emit execution tracing
 
   // ================================================================================
 

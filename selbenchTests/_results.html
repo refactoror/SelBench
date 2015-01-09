@@ -1,0 +1,451 @@
+<html>
+<head><style type='text/css'>
+body, table {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-style: italic;
+}
+
+.selected {
+    background-color: #ffffcc;
+}
+
+.status_done {
+    background-color: #eeffee;
+}
+
+.status_passed {
+    background-color: #ccffcc;
+}
+
+.status_failed {
+    background-color: #ffcccc;
+}
+
+.breakpoint {
+    background-color: #cccccc;
+    border: 1px solid black;
+}
+</style><title>Test suite results</title></head>
+<body>
+<h1>Test suite results </h1>
+
+<table>
+<tr>
+<td>result:</td>
+<td>passed</td>
+</tr>
+<tr>
+<td>totalTime:</td>
+<td>2</td>
+</tr>
+<tr>
+<td>numTestTotal:</td>
+<td>7</td>
+</tr>
+<tr>
+<td>numTestPasses:</td>
+<td>7</td>
+</tr>
+<tr>
+<td>numTestFailures:</td>
+<td>0</td>
+</tr>
+<tr>
+<td>numCommandPasses:</td>
+<td>4</td>
+</tr>
+<tr>
+<td>numCommandFailures:</td>
+<td>0</td>
+</tr>
+<tr>
+<td>numCommandErrors:</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Selenium Version:</td>
+<td>2.44</td>
+</tr>
+<tr>
+<td>Selenium Revision:</td>
+<td>.0</td>
+</tr>
+<tr>
+<td>
+<table id="suiteTable" class="selenium" border="1" cellpadding="1" cellspacing="1"><tbody>
+<tr class="title status_passed"><td><b>Test Suite</b></td></tr>
+<tr class="  status_passed"><td><a href="#testresult0">README</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult1">log</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult2">emit</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult3">timer</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult4">expectError01 - error as expected</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult5">expectError02 - failed-verify as expected</a></td></tr>
+<tr class="  status_passed"><td><a href="#testresult6">examples</a></td></tr>
+</tbody></table>
+
+
+</td>
+<td>&nbsp;</td>
+</tr>
+</table><table><tr>
+<td><a name="testresult0">README.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">README</td></tr>
+</thead><tbody>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>open</td>
+	<td>http://htmlpreview.github.io/?https://github.com/refactoror/SelBench/blob/master/selbenchTests/_selbench-testpage.html</td>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult1">log.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">testtest</td></tr>
+</thead><tbody>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>expectError</td>
+	<td>"missing ;"</td>
+	<td></td>
+</tr>
+<tr class=" selected" style="cursor: pointer;">
+	<td>log</td>
+	<td>flubber is green</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>log</td>
+	<td>"flubber is green"</td>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult2">emit.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">testtest</td></tr>
+</thead><tbody>
+<!----- emit-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>emit</td>
+	<td>"one"</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>emit</td>
+	<td>1+1</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>assertEmitted</td>
+	<td>"one~2"</td>
+	<td></td>
+</tr>
+<!----- reset-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>resetEmitted</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>assertEmitted</td>
+	<td>""</td>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult3">timer.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">Colloquial</td></tr>
+</thead><tbody>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>startTimer</td>
+	<td>outer</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>startTimer</td>
+	<td>inner</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>timerElapsed</td>
+	<td>inner</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>timerElapsed</td>
+	<td>outer</td>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult4">expectError01 - error as expected.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">Colloquial</td></tr>
+</thead><tbody>
+<!---- error as expected-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>expectError</td>
+	<td>/String\.flubber is not a function/</td>
+	<td></td>
+</tr>
+<tr class=" selected" style="cursor: pointer;">
+	<td>getEval</td>
+	<td>String.flubber()</td>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult5">expectError02 - failed-verify as expected.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">Colloquial</td></tr>
+</thead><tbody>
+<!---- failed-verify as expected-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>expectError</td>
+	<td>/Actual value '1' did not match '2'/</td>
+	<td></td>
+</tr>
+<tr class=" selected" style="cursor: pointer;">
+	<td>verifyEval</td>
+	<td>1</td>
+	<td>2</td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr><tr>
+<td><a name="testresult6">examples.html</a><br/><div>
+<table border="1" cellpadding="1" cellspacing="1">
+<thead>
+<tr class="title status_passed"><td rowspan="1" colspan="3">examples</td></tr>
+</thead><tbody>
+<tr class="  status_passed" style="cursor: pointer;">
+	<td>assertEval</td>
+	<td>$d().title === $w().document.title</td>
+	<td>true</td>
+</tr>
+<tr class="  status_passed" style="cursor: pointer;">
+	<td>assertEval</td>
+	<td>$w().navigator.appCodeName</td>
+	<td>Mozilla</td>
+</tr>
+<tr class="  status_passed" style="cursor: pointer;">
+	<td>assertEval</td>
+	<td>$d().title</td>
+	<td>Test Page</td>
+</tr>
+<!---- simple logging-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>log</td>
+	<td>"hello world"</td>
+	<td></td>
+</tr>
+<!---- undefining Selenium variables-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>deleteVar</td>
+	<td>n</td>
+	<td></td>
+</tr>
+<!---- verifying command failure-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>expectError</td>
+	<td>"n is not define"</td>
+	<td></td>
+</tr>
+<tr class=" selected" style="cursor: pointer;">
+	<td>getEval</td>
+	<td>throw "n is not defined"</td>
+	<td></td>
+</tr>
+<!---- tracking state and sequence-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>resetEmitted</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>deleteVar</td>
+	<td>n</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>emit</td>
+	<td>"${n}"</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>store</td>
+	<td>0</td>
+	<td>n</td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>emit</td>
+	<td>n++</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>emit</td>
+	<td>"${n}"</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>assertEmitted</td>
+	<td>"$" + "{n}~" + 0 + "~" + 1</td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>assertEmitted</td>
+	<td>[ "$" + "{n}", 0, 1 ]</td>
+	<td></td>
+</tr>
+<!---- timing execution-->
+<tr class="  status_done" style="cursor: pointer;">
+	<td>startTimer</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="  status_done" style="cursor: pointer;">
+	<td>timerElapsed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="  status_passed" style="cursor: pointer;">
+	<td>assertEval</td>
+	<td>$w().closed</td>
+	<td>false</td>
+</tr>
+</tbody></table>
+
+
+</div></td>
+<td>&nbsp;</td>
+</tr></table><pre>
+info: Starting test /selenium-server/tests/README.html
+info: Executing: |open | http://htmlpreview.github.io/?https://github.com/refactoror/SelBench/blob/master/selbenchTests/_selbench-testpage.html |  |
+info: Starting test /selenium-server/tests/log.html
+info: Executing: |expectError | &quot;missing ;&quot; |  |
+info: Executing: |log | flubber is green |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: [undefined] The expected error is confirmed : missing ; before statement
+info: Executing: |log | &quot;flubber is green&quot; |  |
+info: [undefined] flubber is green
+info: Starting test /selenium-server/tests/emit.html
+info: Executing: |emit | &quot;one&quot; |  |
+info: Executing: |emit | 1+1 |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: Executing: |assertEmitted | &quot;one~2&quot; |  |
+info: Executing: |resetEmitted |  |  |
+info: Executing: |assertEmitted | &quot;&quot; |  |
+info: Starting test /selenium-server/tests/timer.html
+info: Executing: |startTimer | outer |  |
+info: Executing: |pause | 100 |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: Executing: |startTimer | inner |  |
+info: Executing: |pause | 100 |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: Executing: |timerElapsed | inner |  |
+info: [undefined] 0.103 sec elapsed: 
+info: Executing: |pause | 100 |  |
+info: Executing: |timerElapsed | outer |  |
+info: [undefined] 0.318 sec elapsed: 
+info: Starting test /selenium-server/tests/expectError01%20-%20error%20as%20expected.html
+info: Executing: |expectError | /String\.flubber is not a function/ |  |
+info: Executing: |getEval | String.flubber() |  |
+info: script is: String.flubber()
+info: [undefined] The expected error is confirmed : Threw an exception: String.flubber is not a function
+info: Starting test /selenium-server/tests/expectError02%20-%20failed-verify%20as%20expected.html
+info: Executing: |expectError | /Actual value &apos;1&apos; did not match &apos;2&apos;/ |  |
+info: Executing: |verifyEval | 1 | 2 |
+info: script is: 1
+info: [undefined] The expected verify-failure is confirmed : Actual value &apos;1&apos; did not match &apos;2&apos;
+info: Starting test /selenium-server/tests/examples.html
+info: Executing: |assertEval | $d().title === $w().document.title | true |
+info: script is: $d().title === $w().document.title
+info: Executing: |assertEval | $w().navigator.appCodeName | Mozilla |
+info: script is: $w().navigator.appCodeName
+info: Executing: |assertEval | $d().title | Test Page |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: script is: $d().title
+info: Executing: |log | &quot;hello world&quot; |  |
+info: [undefined] hello world
+info: Executing: |deleteVar | n |  |
+info: Executing: |expectError | &quot;n is not define&quot; |  |
+info: Executing: |getEval | throw &quot;n is not defined&quot; |  |
+info: script is: throw &quot;n is not defined&quot;
+info: [undefined] The expected error is confirmed : Threw an exception: n is not defined
+info: Executing: |resetEmitted |  |  |
+info: Executing: |deleteVar | n |  |
+info: Executing: |emit | &quot;${n}&quot; |  |
+info: Executing: |store | 0 | n |
+info: Executing: |emit | n++ |  |
+info: Executing: |emit | &quot;${n}&quot; |  |
+info: Executing: |assertEmitted | &quot;$&quot; + &quot;{n}~&quot; + 0 + &quot;~&quot; + 1 |  |
+info: Executing: |assertEmitted | [ &quot;$&quot; + &quot;{n}&quot;, 0, 1 ] |  |
+info: Executing: |startTimer |  |  |
+info: Executing: |timerElapsed |  |  |
+info: [undefined] 0.016 sec elapsed: 
+info: Executing: |assertEval | $w().closed | false |
+info: script is: $w().closed
+</pre></body></html>

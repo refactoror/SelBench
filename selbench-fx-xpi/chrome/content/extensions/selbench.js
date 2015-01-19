@@ -126,17 +126,26 @@ function $d() { return selenium.browserbot.getDocument(); }
     $$.LOG[level](evalWithVars(expr));
   };
 
+  // log the evaluated expression
+  Selenium.prototype.doClearLog = function(expr, level) {
+    // only applicable for IDE
+    if (typeof editor != "undefined")
+      editor.getUserLog().clear();
+  }
+
   // display alert message with the evaluated expression
   Selenium.prototype.doAlert = function(expr) {
     alert(evalWithVars(expr));
   };
 
-  // remove selenium variable
+  // remove a selenium variable
   Selenium.prototype.doDeleteVar = function(name) {
+    $$.LOG.warn("The deleteVar command has been deprecated as of SelBench 1.0.1 and will be removed in future releases."
+      + " Please use deleteVars instead.");
     delete storedVars[name];
   };
 
-  // remove selenium variable
+  // remove selenium variables
   Selenium.prototype.doDeleteVars = function(namesSpec) {
     var names = namesSpec.split(",");
     for (var i = 0; i < names.length; i++) {

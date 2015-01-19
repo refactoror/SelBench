@@ -12,7 +12,7 @@
         ide_api.addPluginProvidedUserExtension(chr + "/name-space.js");
         ide_api.addPluginProvidedUserExtension(chr + "/logger.js");
         ide_api.addPluginProvidedUserExtension(chr + "/function-intercepting.js");
-        ide_api.addPluginProvidedUserExtension(chr + "/selenium-executionloop-handleAsExpectError.js");
         ide_api.addPluginProvidedUserExtension(chr + "/selbench.js");
+        ide_api.addPluginProvidedUserExtension(chr + "/selenium-executionloop-handleAsExpectError.js");
     </html:script>
 </overlay>

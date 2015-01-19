@@ -54,7 +54,7 @@ a {
 </tr>
 <tr>
 <td>totalTime:</td>
-<td>1</td>
+<td>4</td>
 </tr>
 <tr>
 <td>numTestTotal:</td>
@@ -386,37 +386,38 @@ info: Starting test /selenium-server/tests/README.html
 info: Executing: |clearLog |  |  |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |open | http://htmlpreview.github.io/?https://github.com/refactoror/SelBench/blob/master/selbenchTests/_selbench-testpage.html |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Starting test /selenium-server/tests/log.html
 info: Executing: |expectError | &quot;&quot; |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |log | flubber is green |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: [selbench] The expected error is confirmed : missing ; before statement
 info: Executing: |log | &quot;flubber is green&quot; |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: [selbench] flubber is green
 info: Starting test /selenium-server/tests/emit.html
 info: Executing: |emit | &quot;one&quot; |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |emit | 1+1 |  |
 info: Executing: |assertEmitted | &quot;one~2&quot; |  |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |resetEmitted |  |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |assertEmitted | &quot;&quot; |  |
 info: Starting test /selenium-server/tests/timer.html
 info: Executing: |startTimer | outer |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |pause | 100 |  |
 info: Executing: |startTimer | inner |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |pause | 100 |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |timerElapsed | inner |  |
-info: [selbench] 0.109 sec elapsed: 
+info: [selbench] 0.103 sec elapsed: 
 info: Executing: |pause | 100 |  |
 info: Executing: |timerElapsed | outer |  |
-info: [selbench] 0.349 sec elapsed: 
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
+info: [selbench] 0.337 sec elapsed: 
 info: Starting test /selenium-server/tests/expectError01%20-%20error%20as%20expected.html
 info: Executing: |expectError | /not a function/ |  |
 info: Executing: |getEval | String.flubber() |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: String.flubber()
 info: [selbench] The expected error is confirmed : Threw an exception: String.flubber is not a function
 info: Starting test /selenium-server/tests/expectError02%20-%20failed-verify%20as%20expected.html
@@ -428,7 +429,6 @@ info: Starting test /selenium-server/tests/examples.html
 info: Executing: |assertEval | $d().title === $w().document.title | true |
 info: script is: $d().title === $w().document.title
 info: Executing: |assertEval | $w().navigator.appCodeName | Mozilla |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: $w().navigator.appCodeName
 info: Executing: |log | &quot;hello world&quot; |  |
 info: [selbench] hello world
@@ -437,24 +437,22 @@ info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please
 info: Executing: |expectError | &quot;n is not define&quot; |  |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |getEval | throw &quot;n is not defined&quot; |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: throw &quot;n is not defined&quot;
 info: [selbench] The expected error is confirmed : Threw an exception: n is not defined
 info: Executing: |resetEmitted |  |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |deleteVars | n |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |emit | &quot;${n}&quot; |  |
 info: Executing: |store | 0 | n |
 info: Executing: |emit | n++ |  |
 info: Executing: |emit | &quot;${n}&quot; |  |
 info: Executing: |assertEmitted | &quot;$&quot; + &quot;{n}~&quot; + 0 + &quot;~&quot; + 1 |  |
 info: Executing: |assertEmitted | [ &quot;$&quot; + &quot;{n}&quot;, 0, 1 ] |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |startTimer |  |  |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |timerElapsed |  |  |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
-info: [selbench] 0.016 sec elapsed: 
+info: [selbench] 0.019 sec elapsed: 
 info: Executing: |assertEval | $w().closed | false |
 info: script is: $w().closed
 </pre></body></html>

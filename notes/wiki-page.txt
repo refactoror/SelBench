@@ -9,7 +9,7 @@ Provides utilities for testing, validating, and benchmarking Selenium IDE script
 =Features=
 
 * Convenience functions: <tt>$w()</tt> and <tt>$d()</tt>
-* Commands: <tt>alert</tt>, <tt>log</tt>,
+* Commands: <tt>alert</tt>, <tt>log</tt>, <tt>clearLog</tt>,
     <tt>deleteVar</tt>, <tt>deleteVars</tt>,
     <tt>expectError</tt>, <tt>emit</tt>, <tt>assertEmitted</tt>, <tt>resetEmitted</tt>,
     <tt>startTimer</tt>, <tt>timerElapsed</tt>
@@ -24,10 +24,12 @@ Simple logging and prompting:
 
  alert|"hello world"
  log|"hello world"
+ clearLog
 
 Undefining Selenium variables:
 
  deleteVar|n
+ deleteVars|a,b,c
 
 Verifying that a command will fail as expected:
 
@@ -73,8 +75,9 @@ Therefore it does not make much sense when used on:
 
 =Revision History=
 
-* 2015-??-??: v1.0.1
-** SelBench now works with Selenium Server. A big thanks to Matthew Kastor for this contribution.
+* 2015-??-??: v1.1
+** SelBench now works with Selenium Server. (A big thanks to Matthew Kastor for this contribution, and regression testing improvements.)
+** Added clearLog command.
 ** Fixed Issue #4 expectError fails on unexpected error
 ** Fixed Issue #5 expectError not clearing error status
 * 2014-03-07: v1.0

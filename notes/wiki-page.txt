@@ -57,13 +57,34 @@ Timing script execution:
 
 =Selenium Server=
 
-SelBench can also be used with Selenium Server. To make it available to tests being run in the server, use command line option:
+Selenese scripts that use SelBench commands can also be run in Selenium Server
+via the <tt>-user-extensions</tt> and <tt>-htmlSuite</tt> options.
+Get the current <tt>user-extensions.js</tt> here:
+https://github.com/refactoror/SelBench/user-extensions.js
 
-  -userExtensions user-extensions.js
+For more information on running Selenium Server,
+see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
 
-The latest version of user-extensions.js can be downloaded here: https://github.com/refactoror/SelBench
+Note that prior to version 1.1,
+SelBench has been a Firefox extension only,
+whereas Selenium Server can target a wide range of browsers.
+So to be useful,
+SelBench will need to become compatible with the full set of browsers that Selenium Server supports.
+This should not be a difficult goal.
+SelBench currently passes its full regression test suite when run against
+<tt>firefox</tt> and <tt>googlechrome</tt>, (on Windows).
+Community help is welcome in expanding this list to include:
+<tt>iexplore</tt>, <tt>safari</tt>, <tt>opera</tt>.
 
-For more information, see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
+Be aware that browser-compatibility has a relatively low support priority.
+When reporting an issue, be sure to provide very specific browser/OS info,
+as well as the faling test case, test html, and error log.
+Better yet, if you can fix the problem, submit a github pull request
+-- which is how server support came about in the first place.
+A big thanks to Matthew Kastor!
+
+For an overview of how the SelBench user extension works, see:
+https://github.com/refactoror/SelBench/blob/master/notes/SeleniumServer-notes.txt
 
 =Limitations=
 

@@ -1,0 +1,33 @@
+Command Categories
+
+  output
+    log
+    alert
+  error control
+    expectError
+  state and sequence tracing
+    emit
+    assertEmitted
+    resetEmitted
+  stopwatch
+    startTimer
+    timerElapsed
+  stored variable management
+    deleteVars
+
+
+======================================================================
+
+Name Space and Major Functions
+
+  selblocks ($$) object
+    .LOG
+    .unwrapObject()
+    .handleAsExpectError()
+    .fn
+      .fnStack[]
+      .interceptAfter()
+      .interceptPush()
+      .interceptPop()
+      .getInterceptAttrs()
+      .interceptOnce()

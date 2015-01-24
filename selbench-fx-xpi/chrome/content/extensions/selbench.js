@@ -1,4 +1,4 @@
-/**
+/*
  * SelBench 1.1
  *
  * Utilities for testing, validating, and benchmarking Selenium IDE tests and extensions
@@ -7,7 +7,7 @@
  *   (not "Selenium IDE extensions", because we are accessing the Selenium object)
  *
  * Features
- *  - Commands: log/alert, expectError, emit/assertEmitted/resetEmitted, startTimer/timerElapsed, deleteVar/deleteVars
+ *  - Commands: alert/log/clearLog, expectError, emit/assertEmitted/resetEmitted, startTimer/timerElapsed, deleteVar/deleteVars
  *  - The emit commands provide a way to validate sequencing and accumulated state.
  *  - The expectError command facilitates negative testing by handling command failure as success.
  *  - The alert command is equivalent to getEval|alert()
@@ -29,25 +29,23 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ================================================================================
   // tail intercept Selenium.reset()
 
-  (function () {
-   // called when Selenium IDE opens / on Dev Tools [Reload] button / upon first command execution
-    $$.fn.interceptAfter(Selenium.prototype, "reset", function()
-    {
-      // called before each: execute a single command / run a testcase / run each testcase in a testsuite
-      $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
-      $$.seleniumTestLoop = ($$.seleniumEnv == "server")
-        ? HtmlRunnerTestLoop                     // Selenium Server
-        : editor.selDebugger.runner.IDETestLoop; // Selenium IDE
+  // called when Selenium IDE opens / on Dev Tools [Reload] button / upon first command execution
+  $$.fn.interceptAfter(Selenium.prototype, "reset", function()
+  {
+    // called before each: execute a single command / run a testcase / run each testcase in a testsuite
+    $$.LOG.debug("In SelBench tail intercept :: selenium.reset()");
+    $$.seleniumTestLoop = ($$.seleniumEnv == "server")
+      ? HtmlRunnerTestLoop                     // Selenium Server
+      : editor.selDebugger.runner.IDETestLoop; // Selenium IDE
 
-      try {
-        compileSelbenchCommands();
-      }
-      catch (err) {
-        throw new Error("In " + err.fileName + " @" + err.lineNumber + ": " + err);
-      }
-      storedVars.emitted = "";
-    });
-  })();
+    try {
+      compileSelbenchCommands();
+    }
+    catch (err) {
+      throw new Error("In " + err.fileName + " @" + err.lineNumber + ": " + err);
+    }
+    storedVars.emitted = "";
+  });
 
   function compileSelbenchCommands()
   {
@@ -57,23 +55,25 @@ function $d() { return selenium.browserbot.getDocument(); }
       if (testCase.commands[i].type == "command")
       {
         var curCmd = testCase.commands[i].command;
-        var stemLength = curCmd.indexOf("AndWait");
-        if (stemLength == -1)
-          stemLength = curCmd.length;
+        var aw = curCmd.indexOf("AndWait");
+        if (aw !== -1) {
+          // just ignore the suffix for now, this may or may not be a SelBench command
+          curCmd = curCmd.substring(0, aw);
+        }
 
-        switch (curCmd.substring(0, stemLength)) {
+        switch(curCmd) {
           case "emit": case "assertEmitted": case "resetEmitted":
           case "timer": case "timerElapsed":
-          case "alert":
-            if (curCmd.indexOf("AndWait") != -1)
-              notifyFatal(fmtCmdRef(i) + ", AndWait suffix is not valid for SelBench commands");
+          case "alert": case "log": case "clearLog":
+            assertNotAndWaitSuffix(i);
         }
       }
     }
-  }
-
-  function evalWithVars(expr) {
-    return eval("with (storedVars) {" + expr + "}");
+    //- command validation
+    function assertNotAndWaitSuffix(cmdIdx) {
+      assertCmd(cmdIdx, (aw === -1),
+        ", AndWait suffix is not valid for SelBench commands");
+    }
   }
 
   // ================================================================================
@@ -160,6 +160,13 @@ function $d() { return selenium.browserbot.getDocument(); }
     $$.LOG.error("SelBench error " + msg);
     throw new Error(msg);
   }
+  function notifyFatalCmdRef(idx, msg) { notifyFatal(fmtCmdRef(idx) + msg); }
+  function assertCmd(idx, cond, msg) { if (!cond) { notifyFatalCmdRef(idx, msg); } }
+  function assertNotAndWaitSuffix(idx) {
+    var aw = testCase.commands[idx].command.indexOf("AndWait");
+    assertCmd(idx, (aw === -1),
+      ", AndWait suffix is not valid for SelBench commands");
+  }
 
   function fmtCmdRef(idx) { return ("@" + (idx+1) + ": " + fmtCommand(testCase.commands[idx])); }
   function fmtCommand(cmd) {
@@ -167,6 +174,14 @@ function $d() { return selenium.browserbot.getDocument(); }
     if (cmd.target) c += "|" + cmd.target;
     if (cmd.value)  c += "|" + cmd.value;
     return '[' + c + ']';
+  }
+
+  //================= utils ===============
+
+  function evalWithVars(expr) {
+    // EXTENSION REVIEWERS: Use of eval is consistent with the Selenium extension itself.
+    // Scripted expressions run in the Selenium window, isolated from any web content.
+    return eval("with (storedVars) {" + expr + "}");
   }
 
   // ================================================================================

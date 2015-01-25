@@ -54,7 +54,7 @@ a {
 </tr>
 <tr>
 <td>totalTime:</td>
-<td>1</td>
+<td>2</td>
 </tr>
 <tr>
 <td>numTestTotal:</td>
@@ -91,7 +91,7 @@ a {
 <tr>
 <td>
 <table id="suiteTable" class="selenium" border="1" cellpadding="1" cellspacing="1"><tbody>
-<tr class="title status_passed"><td><b>Test Suite</b></td></tr>
+<tr class="title status_passed"><td><b>Test Suite - SelBench</b></td></tr>
 <tr class="  status_passed"><td><a href="#testresult0">README</a></td></tr>
 <tr class="  status_passed"><td><a href="#testresult1">log</a></td></tr>
 <tr class="  status_passed"><td><a href="#testresult2">emit</a></td></tr>
@@ -396,21 +396,23 @@ info: Starting test /selenium-server/tests/emit.html
 info: Executing: |emit | &quot;one&quot; |  |
 info: Executing: |emit | 1+1 |  |
 info: Executing: |assertEmitted | &quot;one~2&quot; |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |resetEmitted |  |  |
 info: Executing: |assertEmitted | &quot;&quot; |  |
 info: Starting test /selenium-server/tests/timer.html
 info: Executing: |startTimer | outer |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |pause | 100 |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |startTimer | inner |  |
 info: Executing: |pause | 100 |  |
 info: Executing: |timerElapsed | inner |  |
-info: [selbench] 0.109 sec elapsed: 
+info: [selbench] 0.116 sec elapsed: 
 info: Executing: |pause | 100 |  |
 info: Executing: |timerElapsed | outer |  |
-info: [selbench] 0.358 sec elapsed: 
+info: [selbench] 0.380 sec elapsed: 
 info: Starting test /selenium-server/tests/expectError01%20-%20error%20as%20expected.html
 info: Executing: |expectError | /not a function/ |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |getEval | String.flubber() |  |
 info: script is: String.flubber()
 info: [selbench] The expected error is confirmed : Threw an exception: String.flubber is not a function
@@ -439,12 +441,13 @@ info: Executing: |emit | &quot;${n}&quot; |  |
 info: Executing: |store | 0 | n |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |emit | n++ |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |emit | &quot;${n}&quot; |  |
 info: Executing: |assertEmitted | &quot;$&quot; + &quot;{n}~&quot; + 0 + &quot;~&quot; + 1 |  |
 info: Executing: |assertEmitted | [ &quot;$&quot; + &quot;{n}&quot;, 0, 1 ] |  |
 info: Executing: |startTimer |  |  |
 info: Executing: |timerElapsed |  |  |
-info: [selbench] 0.016 sec elapsed: 
+info: [selbench] 0.017 sec elapsed: 
 info: Executing: |assertEval | $w().closed | false |
 info: script is: $w().closed
 </pre></body></html>

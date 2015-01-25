@@ -54,7 +54,7 @@ a {
 </tr>
 <tr>
 <td>totalTime:</td>
-<td>1</td>
+<td>4</td>
 </tr>
 <tr>
 <td>numTestTotal:</td>
@@ -91,7 +91,7 @@ a {
 <tr>
 <td>
 <table id="suiteTable" class="selenium" border="1" cellpadding="1" cellspacing="1"><tbody>
-<tr class="title    status_failed"><td><b>Test Suite - negative</b></td></tr>
+<tr class="title    status_failed"><td><b>Test Suite - SelBench - negative</b></td></tr>
 <tr class="  status_passed"><td><a href="#testresult0">README</a></td></tr>
 <tr class="  status_failed"><td><a href="#testresult1">expectError01 - different error than expected</a></td></tr>
 <tr class="  status_failed"><td><a href="#testresult2">expectError02 - different failed-verify than expected</a></td></tr>
@@ -114,7 +114,7 @@ a {
 	<td></td>
 	<td></td>
 </tr>
-<!---- all tests in this suite fail-->
+<!---- all tests in this suite should fail, and produce the expected logging messages-->
 <!---- compare to _results.log for expected error messages-->
 <tr class="  status_done" style="cursor: pointer;">
 	<td>open</td>
@@ -247,7 +247,6 @@ error: Unknown command: &apos;label&apos;
 warn: currentTest.recordFailure: Unknown command: &apos;label&apos;
 info: Starting test /selenium-server/tests/expectError04%20-%20successful-verify%20not%20expected.html
 info: Executing: |expectError | /Actual value &apos;1&apos; did not match &apos;2&apos;/ |  |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |verifyEval | 1 | 1 |
 info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: 1

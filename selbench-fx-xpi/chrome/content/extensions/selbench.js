@@ -104,7 +104,6 @@ function $d() { return selenium.browserbot.getDocument(); }
     }
     if (expectedValue != storedVars.emitted) {
       var errmsg = " expected: " + expectedValue + "\nbut found: " + storedVars.emitted;
-      alert(errmsg);
       throw new Error(errmsg);
     }
   };

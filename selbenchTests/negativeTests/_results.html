@@ -54,7 +54,7 @@ a {
 </tr>
 <tr>
 <td>totalTime:</td>
-<td>4</td>
+<td>0</td>
 </tr>
 <tr>
 <td>numTestTotal:</td>
@@ -91,7 +91,7 @@ a {
 <tr>
 <td>
 <table id="suiteTable" class="selenium" border="1" cellpadding="1" cellspacing="1"><tbody>
-<tr class="title    status_failed"><td><b>Test Suite - SelBench - negative</b></td></tr>
+<tr class="title    status_failed"><td><b>SelBench - regression - negative</b></td></tr>
 <tr class="  status_passed"><td><a href="#testresult0">README</a></td></tr>
 <tr class="  status_failed"><td><a href="#testresult1">expectError01 - different error than expected</a></td></tr>
 <tr class="  status_failed"><td><a href="#testresult2">expectError02 - different failed-verify than expected</a></td></tr>
@@ -225,6 +225,7 @@ info: Executing: |clearLog |  |  |
 info: Executing: |open | http://htmlpreview.github.io/?https://github.com/refactoror/SelBench/blob/master/selbenchTests/_selbench-testpage.html |  |
 info: Starting test /selenium-server/tests/expectError01%20-%20different%20error%20than%20expected.html
 info: Executing: |expectError | &quot;String.contains is not a function&quot; |  |
+info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: Executing: |getEval | String.pppphreddddd() |  |
 info: script is: String.pppphreddddd()
 error: [selbench] Expected error : String.contains is not a function
@@ -234,7 +235,6 @@ warn: currentTest.recordFailure: Threw an exception: String.pppphreddddd is not 
 info: Starting test /selenium-server/tests/expectError02%20-%20different%20failed-verify%20than%20expected.html
 info: Executing: |expectError | /Actual value &apos;0 &apos; did not match &apos;1&apos;/ |  |
 info: Executing: |verifyEval | 1 | 2 |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: 1
 error: [selbench] Expected error : /Actual value &apos;0 &apos; did not match &apos;1&apos;/
 warn: currentTest.recordFailure: Actual value &apos;1&apos; did not match &apos;2&apos;
@@ -248,7 +248,6 @@ warn: currentTest.recordFailure: Unknown command: &apos;label&apos;
 info: Starting test /selenium-server/tests/expectError04%20-%20successful-verify%20not%20expected.html
 info: Executing: |expectError | /Actual value &apos;1&apos; did not match &apos;2&apos;/ |  |
 info: Executing: |verifyEval | 1 | 1 |
-info: Selenium 1.0 (Core, RC, etc) is no longer under active development. Please update to WebDriver ASAP
 info: script is: 1
 error: Unexpected Exception: Command succeeded, while expecting error : /Actual value &apos;1&apos; did not match &apos;2&apos;/
 error: Exception details: 

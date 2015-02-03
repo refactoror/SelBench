@@ -4,7 +4,7 @@ SETLOCAL
 ::   Hand-edit install.rdf: <em:version>x.y.z
 ::             about.xul: text box
 ::             selbench.js: header comment
-:: Assumptions:
+:: Dependencies:
 ::   cygwin grep
 ::   cygwin zip
 

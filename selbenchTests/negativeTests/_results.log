@@ -1,21 +1,20 @@
 
 
-    [info] Playing test case README
-    [info] Executing: |open | http://htmlpreview.github.io/?https://github.com/refactoror/SelBench/blob/master/selbenchTests/_selbench-testpage.html | |
+    [info] Executing: |open | http://refactoror.net/_selbench-testpage.html | |
     [info] Test case passed
     [info] Playing test case expectError01 - different error than expected
     [info] Executing: |expectError | "String.contains is not a function" | |
     [info] Executing: |getEval | String.pppphreddddd() | |
     [info] script is: String.pppphreddddd()
-    [error] [SelBench] Expected error : String.contains is not a function
-    [error] [SelBench] but encountered : Threw an exception: String.pppphreddddd is not a function
+    [error] [selbench] Expected error : String.contains is not a function
+    [error] [selbench] but encountered : Threw an exception: String.pppphreddddd is not a function
     [error] Threw an exception: String.pppphreddddd is not a function
     [info] Test case failed
     [info] Playing test case expectError02 - different failed-verify than expected
     [info] Executing: |expectError | /Actual value '0 ' did not match '1'/ | |
     [info] Executing: |verifyEval | 1 | 2 |
     [info] script is: 1
-    [error] [SelBench] Expected error : /Actual value '0 ' did not match '1'/
+    [error] [selbench] Expected error : /Actual value '0 ' did not match '1'/
     [error] Actual value '1' did not match '2'
     [info] Test case failed
     [info] Playing test case expectError03 - succeed rather than fail

@@ -116,6 +116,11 @@ function $d() { return selenium.browserbot.getDocument(); }
   // ================================================================================
   // utility commands
 
+  // display alert message with the evaluated expression
+  Selenium.prototype.doAlert = function(expr) {
+    alert(evalWithVars(expr));
+  };
+
   // log the evaluated expression
   Selenium.prototype.doLog = function(expr, level) {
     if (!level)
@@ -131,11 +136,6 @@ function $d() { return selenium.browserbot.getDocument(); }
     if (typeof editor != "undefined")
       editor.getUserLog().clear();
   }
-
-  // display alert message with the evaluated expression
-  Selenium.prototype.doAlert = function(expr) {
-    alert(evalWithVars(expr));
-  };
 
   // remove a selenium variable
   Selenium.prototype.doDeleteVar = function(name) {

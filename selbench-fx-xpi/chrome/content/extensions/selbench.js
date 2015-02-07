@@ -78,7 +78,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
-    $$.expectedError = eval(target);
+    $$.expectedError = evalWithVars(target);
     $$.fn.interceptOnce($$.seleniumTestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
@@ -98,7 +98,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   // if an array is specified, then matches for a ~ between each element
   Selenium.prototype.doAssertEmitted = function(target, value)
   {
-    var expectedValue = eval(target);
+    var expectedValue = evalWithVars(target);
     if (expectedValue instanceof Array) {
       expectedValue = expectedValue.join("~");
     }
@@ -196,7 +196,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   {
     if (script) {
       storedVars._elapsed = timers[name].elapsed();
-      eval(script);
+      evalWithVars(script);
     }
     else
       $$.LOG.info(timers[name].elapsed());

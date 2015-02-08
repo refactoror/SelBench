@@ -78,7 +78,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // ================================================================================
   Selenium.prototype.doExpectError = function(target) {
-    $$.expectedError = evalWithVars(target);
+    $$.expectedError = $$.evalWithVars(target);
     $$.fn.interceptOnce($$.seleniumTestLoop.prototype, "resume", $$.handleAsExpectError);
   };
 
@@ -92,13 +92,13 @@ function $d() { return selenium.browserbot.getDocument(); }
   {
     if (storedVars.emitted)
       storedVars.emitted += "~";
-    storedVars.emitted += evalWithVars(target);
+    storedVars.emitted += $$.evalWithVars(target);
   };
   // verifies that the accumulated emit state matches the given string
   // if an array is specified, then matches for a ~ between each element
   Selenium.prototype.doAssertEmitted = function(target, value)
   {
-    var expectedValue = evalWithVars(target);
+    var expectedValue = $$.evalWithVars(target);
     if (expectedValue instanceof Array) {
       expectedValue = expectedValue.join("~");
     }
@@ -118,7 +118,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   // display alert message with the evaluated expression
   Selenium.prototype.doAlert = function(expr) {
-    alert(evalWithVars(expr));
+    alert($$.evalWithVars(expr));
   };
 
   // log the evaluated expression
@@ -127,7 +127,7 @@ function $d() { return selenium.browserbot.getDocument(); }
       level = "info";
     if (!$$.LOG[level])
       throw new Error("'" + level + "' is not a valid logging level");
-    $$.LOG[level](evalWithVars(expr));
+    $$.LOG[level]($$.evalWithVars(expr));
   };
 
   // log the evaluated expression
@@ -177,7 +177,7 @@ function $d() { return selenium.browserbot.getDocument(); }
 
   //================= utils ===============
 
-  function evalWithVars(expr) {
+  $$.evalWithVars = function(expr) {
     // EXTENSION REVIEWERS: Use of eval is consistent with the Selenium extension itself.
     // Scripted expressions run in the Selenium window, isolated from any web content.
     return eval("with (storedVars) {" + expr + "}");
@@ -196,7 +196,7 @@ function $d() { return selenium.browserbot.getDocument(); }
   {
     if (script) {
       storedVars._elapsed = timers[name].elapsed();
-      evalWithVars(script);
+      $$.evalWithVars(script);
     }
     else
       $$.LOG.info(timers[name].elapsed());

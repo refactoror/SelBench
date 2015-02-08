@@ -1,11 +1,11 @@
 ================================================================================
-SelBench (for Selenium IDE) 1.0
+SelBench (for Selenium IDE) 1.1
 by refactoror
 
-Latest version 1.0
+Latest version 1.1
 
 -limit 250 characters-
-This is an extension for Selenium IDE that provides a collection of utilities for testing, validating, and benchmarking Selenium IDE scripts. This is especially useful for instrumenting scripts that are used to test Selenium IDE extensions.
+This is a Selenium IDE extension provides utilities for testing, validating, and benchmarking Selenium IDE scripts. This is especially useful for instrumenting scripts that are used to test Selenium IDE extensions.
 
 
 ================================================================================
@@ -15,17 +15,15 @@ About this Add-on
 <ul>
   <li>Adds the following convenience functions:
     <ul>
-    <blockquote><code>$w()</code> returns the window object</blockquote>
-    <blockquote><code>$d()</code> returns the document object</blockquote>
-    </ul>
+    <blockquote><code>$w()</code> and<code>$d()</code> are shorthand references to the window and document objects of the target webpage</blockquote>
   </li>
   <li>Provides the following Selenese commands:
     <ul>
-    <blockquote><code>log</code>, <code>alert</code></blockquote>
+    <blockquote><code>alert</code>, <code>log</code>, <code>clearLog</code></blockquote>
     <blockquote><code>expectError</code></blockquote>
     <blockquote><code>emit</code>, <code>assertEmitted</code>, <code>resetEmitted</code></blockquote>
     <blockquote><code>startTimer</code>, <code>timerElapsed</code></blockquote>
-    <blockquote><code>deleteVar</code></blockquote>
+    <blockquote><code>deleteVars</code></blockquote>
     </ul>
   </li>
 </ul>
@@ -37,4 +35,7 @@ Version 1.0
 Released ...
 
 Changes since 1.0:
-* ...
+* Added support for Selenium Server. (A big thanks to Matthew Kastor for this contribution)
+* Added clearLog command.
+* Added deleteVars command, (deprecated deleteVar).
+* Fixed expectError not clearing script error status

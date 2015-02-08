@@ -6,7 +6,7 @@
     <em:name>Selenium IDE - SelBench</em:name>
     <em:version>1.1</em:version>
     <em:creator>Chris Noe</em:creator>
-    <em:description>A script and extension testing extension for Selenium-IDE</em:description>
+    <em:description>A script/extension testing extension for Selenium-IDE</em:description>
     <em:type>2</em:type> <!--Type extension-->
     <em:homepageURL>http://refactoror.net/</em:homepageURL>
     <em:iconURL>chrome://selbenchSeleExten/skin/icon.png</em:iconURL>

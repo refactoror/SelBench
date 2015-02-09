@@ -6,6 +6,8 @@ var selbench = {
 };
 
 (function($$){
+  $$.fn = {};
+
   /* Starting with FF4 lots of objects are in an XPCNativeWrapper,
    * and we need the underlying object for == and for..in operations.
    */

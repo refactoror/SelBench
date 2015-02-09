@@ -3,7 +3,6 @@
 
   /* Function interception
   */
-  $$.fn = {};
 
   // execute the given function after each call of the specified function name
   $$.fn.interceptAfter = function(targetObj, targetFnName, _fnAfter) {

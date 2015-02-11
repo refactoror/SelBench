@@ -130,11 +130,13 @@ function $d() { return selenium.browserbot.getDocument(); }
     $$.LOG[level]($$.evalWithVars(expr));
   };
 
-  // log the evaluated expression
-  Selenium.prototype.doClearLog = function(expr, level) {
-    // only applicable for IDE
-    if (typeof editor != "undefined")
-      editor.getUserLog().clear();
+  // clear the IDE log window
+  Selenium.prototype.doClearLog = function() {
+    if ($$.seleniumEnv != "ide") {
+      $$.LOG.warn("clearLog command ignored in non-IDE environment");
+      return;
+    }
+    editor.getUserLog().clear();
   }
 
   // remove a selenium variable
@@ -181,6 +183,10 @@ function $d() { return selenium.browserbot.getDocument(); }
     // EXTENSION REVIEWERS: Use of eval is consistent with the Selenium extension itself.
     // Scripted expressions run in the Selenium window, isolated from any web content.
     return eval("with (storedVars) {" + expr + "}");
+  }
+
+  function getIdeLogLevel() {
+    return parseInt(editor.getOptions().logLevel);
   }
 
   // ================================================================================

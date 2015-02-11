@@ -91,7 +91,7 @@ a {
 <tr>
 <td>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
-<tr class="title status_passed"><td><b>SelBench - regression</b></td></tr>
+<tr class="title status_passed"><td><b>Test Suite</b></td></tr>
 <tr class=" status_passed"><td><a href="#testresult0">README</a></td></tr>
 <tr class=" status_passed"><td><a href="#testresult1">log</a></td></tr>
 <tr class=" status_passed"><td><a href="#testresult2">emit</a></td></tr>
@@ -384,6 +384,7 @@ a {
 </tr></table><pre>
 info: Starting test /selenium-server/tests/README.html
 info: Executing: |clearLog |  |  |
+warn: [selbench] clearLog command ignored in non-IDE environment
 info: Executing: |open | http://refactoror.net/_selbench-testpage.html |  |
 info: Starting test /selenium-server/tests/log.html
 info: Executing: |expectError | &quot;&quot; |  |
@@ -406,7 +407,7 @@ info: Executing: |timerElapsed | inner |  |
 info: [selbench] 0.103 sec elapsed: 
 info: Executing: |pause | 100 |  |
 info: Executing: |timerElapsed | outer |  |
-info: [selbench] 0.317 sec elapsed: 
+info: [selbench] 0.316 sec elapsed: 
 info: Starting test /selenium-server/tests/expectError01%20-%20error%20as%20expected.html
 info: Executing: |expectError | /not a function/ |  |
 info: Executing: |getEval | String.flubber() |  |
@@ -439,7 +440,7 @@ info: Executing: |assertEmitted | &quot;$&quot; + &quot;{n}~&quot; + 0 + &quot;~
 info: Executing: |assertEmitted | [ &quot;$&quot; + &quot;{n}&quot;, 0, 1 ] |  |
 info: Executing: |startTimer |  |  |
 info: Executing: |timerElapsed |  |  |
-info: [selbench] 0.006 sec elapsed: 
+info: [selbench] 0.005 sec elapsed: 
 info: Executing: |assertEval | $w().closed | false |
 info: script is: $w().closed
 </pre></body></html>

@@ -22,10 +22,10 @@
     [info] Executing: |startTimer | inner | |
     [info] Executing: |pause | 100 | |
     [info] Executing: |timerElapsed | inner | |
-    [info] [selbench] 0.115 sec elapsed:
+    [info] [selbench] 0.121 sec elapsed:
     [info] Executing: |pause | 100 | |
     [info] Executing: |timerElapsed | outer | |
-    [info] [selbench] 0.347 sec elapsed:
+    [info] [selbench] 0.357 sec elapsed:
     [info] Test case passed
     [info] Playing test case expectError01 - error as expected
     [info] Executing: |expectError | /not a function/ | |
@@ -61,7 +61,7 @@
     [info] Executing: |assertEmitted | [ "$" + "{n}", 0, 1 ] | |
     [info] Executing: |startTimer | | |
     [info] Executing: |timerElapsed | | |
-    [info] [selbench] 0.009 sec elapsed:
+    [info] [selbench] 0.018 sec elapsed:
     [info] Executing: |assertEval | $w().closed | false |
     [info] script is: $w().closed
     [info] Test case passed

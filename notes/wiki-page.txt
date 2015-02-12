@@ -98,7 +98,7 @@ But it cannot be used on:
 * Commands that themselves manage other commands, (e.g., itself, the SelBlocks <tt>try</tt> command)
 
 Never use the ...<tt>AndWait</tt> counterpart of a SelBench command, e.g., <tt>logAndWait</tt>.
-''Selenium automatically registers with every defined command, even though it does not always make sense.''
+(''Selenium automatically registers one with every defined command, even though it does not always make sense.'')
 If you use one of these, (usually via inadvertent auto-completion),
 SelBench will throw an error when you try to start the script in the IDE.
 This is a bit more difficult to diagnose in Selenium Server,

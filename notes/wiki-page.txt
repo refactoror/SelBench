@@ -121,7 +121,7 @@ and therefore simply hangs without an error when such a command executes.
 
 =Revision History=
 
-* 2015-02-??: v1.1
+* 2015-02-12: v1.1
 ** Added support for Selenium Server. (A big thanks to Matthew Kastor for this contribution)
 ** Added clearLog command.
 ** Added deleteVars command, (deprecated deleteVar).

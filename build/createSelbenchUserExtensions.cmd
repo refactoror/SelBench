@@ -1,5 +1,5 @@
 SETLOCAL
-:: Assumptions:
+:: Dependencies:
 ::   cygwin sed
 
 ::@echo off
@@ -21,9 +21,13 @@ FOR /F %%L IN (jsFilenames.txt) DO (
 del jsFilenames.txt
 
 :: create minified version of user-extensions.js
-"%JAVA_HOME%\bin\java" -jar "yuicompressor-2.4.8.jar" ^
+"%JAVA_HOME%\bin\java" -jar "lib/yuicompressor-2.4.8.jar" ^
      ../user-extensions.js ^
   -o ../user-extensions-min.js
+IF NOT ERRORLEVEL 1 goto :checked
+echo ERRORLEVEL=%ERRORLEVEL%
+pause
+:checked
 
 popd
 
@@ -31,14 +35,14 @@ ENDLOCAL
 goto :done
 
 :s_concat
+  IF "%2" == "selbench.js" (
+    CALL :s_concat . user-extensions-base.js
+  )
   echo.>> ..\user-extensions.js
   echo // ================================================================================>> ..\user-extensions.js
   echo // from: %2>> ..\user-extensions.js
   echo.>> ..\user-extensions.js
   type %1\%2 >> ..\user-extensions.js
-  IF "%2" == "function-intercepting.js" (
-    CALL :s_concat . user-extensions-base.js
-  )
   goto :eof
 
 :done

@@ -1,10 +1,12 @@
 // SelBench name-space
-var selbench = { name: "SelBench" };
+var selbench = {
+   name: "selbench"
+  ,seleniumEnv: "ide"
+  ,globalContext: this // alias for global Selenium scope
+};
 
 (function($$){
-  $$.seleniumEnv = "ide";
-  // global scope alias
-  $$.globalContext = this;
+  $$.fn = {};
 
   /* Starting with FF4 lots of objects are in an XPCNativeWrapper,
    * and we need the underlying object for == and for..in operations.

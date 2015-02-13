@@ -1,0 +1,29 @@
+
+
+    [info] Playing test case smoketest
+    [info] Executing: |assertEval | $d().title === $w().document.title | true |
+    [info] script is: $d().title === $w().document.title
+    [info] Executing: |assertEval | $w().navigator.appCodeName | Mozilla |
+    [info] script is: $w().navigator.appCodeName
+    [info] Executing: |log | "flubber is green" | |
+    [info] [selbench] flubber is green
+    [info] Executing: |emit | "one" | |
+    [info] Executing: |emit | 1+1 | |
+    [info] Executing: |assertEmitted | "one~2" | |
+    [info] Executing: |resetEmitted | | |
+    [info] Executing: |assertEmitted | "" | |
+    [info] Executing: |startTimer | | |
+    [info] Executing: |pause | 100 | |
+    [info] Executing: |timerElapsed | | |
+    [info] [selbench] 0.131 sec elapsed:
+    [info] Executing: |expectError | /not a function/ | |
+    [info] Executing: |getEval | String.flubber() | |
+    [info] script is: String.flubber()
+    [info] [selbench] The expected error is confirmed : Threw an exception: String.flubber is not a function
+    [info] Executing: |expectError | /Actual value '1' did not match '2'/ | |
+    [info] Executing: |verifyEval | 1 | 2 |
+    [info] script is: 1
+    [info] [selbench] The expected verify-failure is confirmed : Actual value '1' did not match '2'
+    [info] Test case passed
+    [info] Test suite completed: 1 played, all passed! 
+

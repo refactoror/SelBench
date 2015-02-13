@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://change-this-to-the-site-you-are-testing/" />
+<title>smoketest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">eval</td></tr>
+</thead><tbody>
+<!--== javascript extensions-->
+<tr>
+	<td>assertEval</td>
+	<td>$d().title === $w().document.title</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>$w().navigator.appCodeName</td>
+	<td>Mozilla</td>
+</tr>
+<!--== output-->
+<tr>
+	<td>log</td>
+	<td>&quot;flubber is green&quot;</td>
+	<td></td>
+</tr>
+<!--== emit-->
+<tr>
+	<td>emit</td>
+	<td>&quot;one&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>emit</td>
+	<td>1+1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEmitted</td>
+	<td>&quot;one~2&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resetEmitted</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEmitted</td>
+	<td>&quot;&quot;</td>
+	<td></td>
+</tr>
+<!--== timer-->
+<tr>
+	<td>startTimer</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>timerElapsed</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--== error as expected-->
+<tr>
+	<td>expectError</td>
+	<td>/not a function/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>String.flubber()</td>
+	<td></td>
+</tr>
+<!--== failed-verify as expected-->
+<tr>
+	<td>expectError</td>
+	<td>/Actual value '1' did not match '2'/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>1</td>
+	<td>2</td>
+</tr>
+</tbody></table>
+</body>
+</html>

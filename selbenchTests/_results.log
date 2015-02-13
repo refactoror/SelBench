@@ -1,0 +1,69 @@
+
+
+    [info] Executing: |open | http://refactoror.net/_selbench-testpage.html | |
+    [info] Test case passed
+    [info] Playing test case log
+    [info] Executing: |expectError | "" | |
+    [info] Executing: |log | flubber is green | |
+    [info] [selbench] The expected error is confirmed : missing ; before statement
+    [info] Executing: |log | "flubber is green" | |
+    [info] [selbench] flubber is green
+    [info] Test case passed
+    [info] Playing test case emit
+    [info] Executing: |emit | "one" | |
+    [info] Executing: |emit | 1+1 | |
+    [info] Executing: |assertEmitted | "one~2" | |
+    [info] Executing: |resetEmitted | | |
+    [info] Executing: |assertEmitted | "" | |
+    [info] Test case passed
+    [info] Playing test case timer
+    [info] Executing: |startTimer | outer | |
+    [info] Executing: |pause | 100 | |
+    [info] Executing: |startTimer | inner | |
+    [info] Executing: |pause | 100 | |
+    [info] Executing: |timerElapsed | inner | |
+    [info] [selbench] 0.121 sec elapsed:
+    [info] Executing: |pause | 100 | |
+    [info] Executing: |timerElapsed | outer | |
+    [info] [selbench] 0.357 sec elapsed:
+    [info] Test case passed
+    [info] Playing test case expectError01 - error as expected
+    [info] Executing: |expectError | /not a function/ | |
+    [info] Executing: |getEval | String.flubber() | |
+    [info] script is: String.flubber()
+    [info] [selbench] The expected error is confirmed : Threw an exception: String.flubber is not a function
+    [info] Test case passed
+    [info] Playing test case expectError02 - failed-verify as expected
+    [info] Executing: |expectError | /Actual value '1' did not match '2'/ | |
+    [info] Executing: |verifyEval | 1 | 2 |
+    [info] script is: 1
+    [info] [selbench] The expected verify-failure is confirmed : Actual value '1' did not match '2'
+    [info] Test case passed
+    [info] Playing test case examples
+    [info] Executing: |assertEval | $d().title === $w().document.title | true |
+    [info] script is: $d().title === $w().document.title
+    [info] Executing: |assertEval | $w().navigator.appCodeName | Mozilla |
+    [info] script is: $w().navigator.appCodeName
+    [info] Executing: |log | "hello world" | |
+    [info] [selbench] hello world
+    [info] Executing: |deleteVars | n | |
+    [info] Executing: |expectError | "n is not define" | |
+    [info] Executing: |getEval | throw "n is not defined" | |
+    [info] script is: throw "n is not defined"
+    [info] [selbench] The expected error is confirmed : Threw an exception: n is not defined
+    [info] Executing: |resetEmitted | | |
+    [info] Executing: |deleteVars | n | |
+    [info] Executing: |emit | "${n}" | |
+    [info] Executing: |store | 0 | n |
+    [info] Executing: |emit | n++ | |
+    [info] Executing: |emit | "${n}" | |
+    [info] Executing: |assertEmitted | "$" + "{n}~" + 0 + "~" + 1 | |
+    [info] Executing: |assertEmitted | [ "$" + "{n}", 0, 1 ] | |
+    [info] Executing: |startTimer | | |
+    [info] Executing: |timerElapsed | | |
+    [info] [selbench] 0.018 sec elapsed:
+    [info] Executing: |assertEval | $w().closed | false |
+    [info] script is: $w().closed
+    [info] Test case passed
+    [info] Test suite completed: 7 played, all passed! 
+

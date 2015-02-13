@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://change-this-to-the-site-you-are-testing/" />
+<title>examples</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">examples</td></tr>
+</thead><tbody>
+<tr>
+	<td>assertEval</td>
+	<td>$d().title === $w().document.title</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>$w().navigator.appCodeName</td>
+	<td>Mozilla</td>
+</tr>
+<!---- simple logging-->
+<tr>
+	<td>log</td>
+	<td>&quot;hello world&quot;</td>
+	<td></td>
+</tr>
+<!---- undefining Selenium variables-->
+<tr>
+	<td>deleteVars</td>
+	<td>n</td>
+	<td></td>
+</tr>
+<!---- verifying command failure-->
+<tr>
+	<td>expectError</td>
+	<td>&quot;n is not define&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>throw &quot;n is not defined&quot;</td>
+	<td></td>
+</tr>
+<!---- tracking state and sequence-->
+<tr>
+	<td>resetEmitted</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>deleteVars</td>
+	<td>n</td>
+	<td></td>
+</tr>
+<tr>
+	<td>emit</td>
+	<td>&quot;${n}&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>n</td>
+</tr>
+<tr>
+	<td>emit</td>
+	<td>n++</td>
+	<td></td>
+</tr>
+<tr>
+	<td>emit</td>
+	<td>&quot;${n}&quot;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEmitted</td>
+	<td>&quot;$&quot; + &quot;{n}~&quot; + 0 + &quot;~&quot; + 1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEmitted</td>
+	<td>[ &quot;$&quot; + &quot;{n}&quot;, 0, 1 ]</td>
+	<td></td>
+</tr>
+<!---- timing execution-->
+<tr>
+	<td>startTimer</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>timerElapsed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>$w().closed</td>
+	<td>false</td>
+</tr>
+</tbody></table>
+</body>
+</html>

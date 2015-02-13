@@ -1,4 +1,4 @@
-=SelBench 1.0=
+=SelBench 1.1=
 
 Installer: https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/
 
@@ -8,9 +8,9 @@ Provides utilities for testing, validating, and benchmarking Selenium IDE script
 
 =Features=
 
-* Convenience functions: <tt>$w()</tt> and <tt>$d()</tt>
-* Commands: <tt>alert</tt>, <tt>log</tt>,
-    <tt>deleteVar</tt>, <tt>deleteVars</tt>,
+* Convenience functions: <tt>$w()</tt> and <tt>$d()</tt> are shorthand references to the window and document objects of the target webpage
+* Commands: <tt>alert</tt>, <tt>log</tt>, <tt>clearLog</tt>,
+    <tt>deleteVars</tt>,
     <tt>expectError</tt>, <tt>emit</tt>, <tt>assertEmitted</tt>, <tt>resetEmitted</tt>,
     <tt>startTimer</tt>, <tt>timerElapsed</tt>
 
@@ -24,10 +24,11 @@ Simple logging and prompting:
 
  alert|"hello world"
  log|"hello world"
+ clearLog
 
 Undefining Selenium variables:
 
- deleteVar|n
+ deleteVars|a,b,c
 
 Verifying that a command will fail as expected:
 
@@ -55,28 +56,77 @@ Timing script execution:
 
 =Selenium Server=
 
-SelBench can also be used with Selenium Server. To make it available to tests being run in the server, use command line option:
+Selenese scripts that use SelBench commands can also be run in Selenium Server
+via the <tt>-user-extensions</tt> and <tt>-htmlSuite</tt> options.
+Get the current <tt>user-extensions.js</tt> here:
+https://github.com/refactoror/SelBench/user-extensions.js
 
-  -userExtensions user-extensions.js
+For more information on running Selenium Server,
+see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
 
-The latest version of user-extensions.js can be downloaded here: https://github.com/refactoror/SelBench
+Note that prior to version 1.1 SelBench has been a Firefox extension only,
+whereas Selenium Server can target a wide range of browsers.
+SelBench currently passes its full regression test suite when run against:
+* <tt>firefox</tt> (31.4)
+* <tt>googlechrome</tt> (40.0)
+* <tt>opera</tt> (27.0)
+Community help is welcome and encouraged in expanding this list.
+There are currently known issues with:
+* <tt>iexplorer</tt> (11.0): <tt>Object.defineProperties</tt> fails - test-startup hangs
+* <tt>safari</tt> (5.1.7): <tt>htmlTestRunner</tt> is not defined - test-startup hangs
 
-For more information, see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
+Running scripts in Selenium Server introduces the possibilty of browser compatibility issues,
+especially when running IDE-produced scripts against non-Firefox browsers.
+Potential pain points include differences in
+JavaScript error messaging, (e.g., <tt>try</tt>/<tt>catch</tt>),
+and DOM property values, (e.g., <tt>$w().title</tt>).
+
+When reporting an issue, be sure to provide very specific browser/OS info,
+as well as the faling test case, test html, and error log.
+Better yet, if you can fix the problem, submit a github pull request
+-- which is how server support came about in the first place.
+A big thanks to Matthew Kastor for this contribution!
+
+For an overview of how the SelBench user extension works, see:
+https://github.com/refactoror/SelBench/blob/master/notes/SeleniumServer-notes.txt
 
 =Limitations=
 
-<tt>expectError</tt> works on the next command to be executed.
-Therefore it does not make much sense when used on:
-* commands that cannot fail, (e.g., the SelBlocks <tt>exitTest</tt> command)
-* commands that themselves manage other commands, (e.g., the SelBlocks <tt>try</tt> command)
-* on itself
+The <tt>expectError</tt> command operates on the next command to be executed.
+But it cannot be used on:
+* Commands that cannot fail, (e.g., <tt>startTimer</tt>, the SelBlocks <tt>exitTest</tt> command)
+* Commands that themselves manage other commands, (e.g., itself, the SelBlocks <tt>try</tt> command)
+
+Never use the ...<tt>AndWait</tt> counterpart of a SelBench command, e.g., <tt>logAndWait</tt>.
+(''Selenium automatically registers one with every defined command, even though it does not always make sense.'')
+If you use one of these, (usually via inadvertent auto-completion),
+SelBench will throw an error when you try to start the script in the IDE.
+This is a bit more difficult to diagnose in Selenium Server,
+which cannot currently detect the situation,
+and therefore simply hangs without an error when such a command executes.
+
+=Troubleshooting=
+
+==Selenium IDE==
+
+==Selenium Server==
+
+===Testsuite works in the IDE, but won't start in Server===
+
+* You haven't provided the SelBench user-extensions.js on the command line.
+
+===Test hangs at SelBench command===
+
+* You may have used the <tt>AndWait</tt> counterpart command. This is never valid because SelBench commands do not interact with webpages.
 
 =Revision History=
 
-* 2015-??-??: v1.0.1
-** SelBench now works with Selenium Server. A big thanks to Matthew Kastor for this contribution.
+* 2015-02-12: v1.1
+** Added support for Selenium Server. (A big thanks to Matthew Kastor for this contribution)
+** Added clearLog command.
+** Added deleteVars command, (deprecated deleteVar).
 ** Fixed Issue #4 expectError fails on unexpected error
-** Fixed Issue #5 expectError not clearing error status
-* 2014-03-07: v1.0
+** Fixed Issue #5 expectError not clearing script error status
+* 2013-03-07: v1.0
 
 All versions: https://addons.mozilla.org/en-US/firefox/addon/selenium-ide-selbench/versions/

@@ -59,7 +59,7 @@ Timing script execution:
 Selenese scripts that use SelBench commands can also be run in Selenium Server
 via the <tt>-user-extensions</tt> and <tt>-htmlSuite</tt> options.
 Get the current <tt>user-extensions.js</tt> here:
-https://github.com/refactoror/SelBench/user-extensions.js
+https://raw.githubusercontent.com/refactoror/SelBench/master/user-extensions.js
 
 For more information on running Selenium Server,
 see: http://www.seleniumhq.org/docs/08_user_extensions.jsp#using-user-extensions-with-selenium-ide
@@ -106,8 +106,6 @@ which cannot currently detect the situation,
 and therefore simply hangs without an error when such a command executes.
 
 =Troubleshooting=
-
-==Selenium IDE==
 
 ==Selenium Server==
 
